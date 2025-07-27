@@ -1,6 +1,6 @@
 package com.conceptcoding.video1solid.openclosed.solution;
 
-import com.codebytes.video1.singleresponsibility.solution.Invoice;
+import com.conceptcoding.video1solid.singleresponsibility.solution.Invoice;
 
 // Concrete implementation for FileInvoiceDao
 // NEW File Save Operation: An extension without modification!

@@ -1,6 +1,7 @@
 package com.conceptcoding.video1solid.openclosed.violation;
 
-import com.codebytes.video1.singleresponsibility.solution.Invoice;
+
+import com.conceptcoding.video1solid.singleresponsibility.solution.Invoice;
 
 // Responsibility: Managing Database Operations and File Operations
 // BAD: This class violates OCP - needs modification for every new kind of save function

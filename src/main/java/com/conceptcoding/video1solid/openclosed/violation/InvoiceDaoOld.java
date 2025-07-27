@@ -1,6 +1,7 @@
 package com.conceptcoding.video1solid.openclosed.violation;
 
-import com.codebytes.video1.singleresponsibility.solution.Invoice;
+
+import com.conceptcoding.video1solid.singleresponsibility.solution.Invoice;
 
 // Responsibility: Managing Database Operations only
 public class InvoiceDaoOld {

@@ -1,7 +1,7 @@
 package com.conceptcoding.video1solid.openclosed.solution;
 
-import com.codebytes.video1.singleresponsibility.solution.Invoice;
-import com.codebytes.video1.singleresponsibility.solution.Marker;
+import com.conceptcoding.video1solid.singleresponsibility.solution.Invoice;
+import com.conceptcoding.video1solid.singleresponsibility.solution.Marker;
 
 // Usage demonstrating OCP compliance
 public class SolutionDemo {

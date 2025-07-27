@@ -1,7 +1,8 @@
 package com.conceptcoding.video1solid.openclosed.violation;
 
-import com.codebytes.video1.singleresponsibility.solution.Invoice;
-import com.codebytes.video1.singleresponsibility.solution.Marker;
+
+import com.conceptcoding.video1solid.singleresponsibility.solution.Invoice;
+import com.conceptcoding.video1solid.singleresponsibility.solution.Marker;
 
 // Usage example - showing the problem
 public class ViolationDemo {
