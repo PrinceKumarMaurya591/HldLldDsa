@@ -1,9 +1,9 @@
 package com.conceptcoding.video1solid.dependencyinversion.violation;
 
-import com.codebytes.video1.dependencyinversion.utility.Keyboard;
-import com.codebytes.video1.dependencyinversion.utility.Mouse;
-import com.codebytes.video1.dependencyinversion.utility.WiredKeyboard;
-import com.codebytes.video1.dependencyinversion.utility.WiredMouse;
+import com.conceptcoding.video1solid.dependencyinversion.utility.Keyboard;
+import com.conceptcoding.video1solid.dependencyinversion.utility.Mouse;
+import com.conceptcoding.video1solid.dependencyinversion.utility.WiredKeyboard;
+import com.conceptcoding.video1solid.dependencyinversion.utility.WiredMouse;
 
 // VIOLATION OF DIP
 // High-level module directly depending on low-level module

@@ -1,9 +1,9 @@
 package com.conceptcoding.video1solid.dependencyinversion.solution;
 
-import com.codebytes.video1.dependencyinversion.utility.BluetoothKeyboard;
-import com.codebytes.video1.dependencyinversion.utility.BluetoothMouse;
-import com.codebytes.video1.dependencyinversion.utility.WiredKeyboard;
-import com.codebytes.video1.dependencyinversion.utility.WiredMouse;
+import com.conceptcoding.video1solid.dependencyinversion.utility.BluetoothKeyboard;
+import com.conceptcoding.video1solid.dependencyinversion.utility.BluetoothMouse;
+import com.conceptcoding.video1solid.dependencyinversion.utility.WiredKeyboard;
+import com.conceptcoding.video1solid.dependencyinversion.utility.WiredMouse;
 
 // Usage example - following DIP
 public class DemoSolution {

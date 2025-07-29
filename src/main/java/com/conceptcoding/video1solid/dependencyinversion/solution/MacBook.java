@@ -1,7 +1,7 @@
 package com.conceptcoding.video1solid.dependencyinversion.solution;
 
-import com.codebytes.video1.dependencyinversion.utility.Keyboard;
-import com.codebytes.video1.dependencyinversion.utility.Mouse;
+import com.conceptcoding.video1solid.dependencyinversion.utility.Keyboard;
+import com.conceptcoding.video1solid.dependencyinversion.utility.Mouse;
 
 // Following DIP
 // High-level module uses abstraction
