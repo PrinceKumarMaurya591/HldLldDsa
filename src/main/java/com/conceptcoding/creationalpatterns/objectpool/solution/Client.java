@@ -5,8 +5,12 @@ import com.conceptcoding.creationalpatterns.objectpool.resource.DBConnection;
 // Client - Object Pool Solution Demo
 public class Client {
     public static void main(String[] args) {
+        System.out.println("======= Object Pool Design Pattern ======");
+
+        // Creating a DBConnectionPoolManager
         DBConnectionPoolManager poolManager = DBConnectionPoolManager.getInstance();
 
+        // Creating 6 DBConnections (MAX_POOL_SIZE is 6)
         DBConnection dbConnection1 = poolManager.getDBConnection();
         DBConnection dbConnection2 = poolManager.getDBConnection();
         DBConnection dbConnection3 = poolManager.getDBConnection();
