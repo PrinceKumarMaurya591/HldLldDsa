@@ -1,10 +1,7 @@
 package com.conceptcoding.creationalpatterns.factory.simplefactory;
 
-import com.conceptcoding.creationalpatterns.factory.Circle;
-import com.conceptcoding.creationalpatterns.factory.Rectangle;
 import com.conceptcoding.creationalpatterns.factory.Shape;
-import com.conceptcoding.creationalpatterns.factory.Square;
-import com.conceptcoding.creationalpatterns.factory.simplefactory.ShapeFactory;
+import com.conceptcoding.creationalpatterns.factory.ShapeType;
 
 // Step 3: Simple Factory Demo (Bloated Design)
 public class SimpleFactoryDemo {
