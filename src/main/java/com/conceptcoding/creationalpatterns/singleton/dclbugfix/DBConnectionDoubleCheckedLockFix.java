@@ -1,6 +1,6 @@
-package com.conceptcoding.creationalpatterns.singleton;
+package com.conceptcoding.creationalpatterns.singleton.dclbugfix;
 
-// 4. Double Locking Singleton - Fix Demo
+// Singleton - Double Checked Locking - Fix Demo
 public class DBConnectionDoubleCheckedLockFix {
 
     // volatile keyword is used to ensure that the value of the variable
@@ -15,9 +15,9 @@ public class DBConnectionDoubleCheckedLockFix {
 
     // Thread Safe Method to return the unique instance of this class
     public static DBConnectionDoubleCheckedLockFix getConnectionObj(int portNumberValue) {
-        if(connectionObj == null) {
-            synchronized(DBConnectionDoubleCheckedLockFix.class) {
-                if(connectionObj == null) {
+        if (connectionObj == null) {
+            synchronized (DBConnectionDoubleCheckedLockFix.class) {
+                if (connectionObj == null) {
                     connectionObj = new DBConnectionDoubleCheckedLockFix(portNumberValue);
                 }
             }
@@ -27,6 +27,6 @@ public class DBConnectionDoubleCheckedLockFix {
 
     // Method to display a message
     public void displayMessage() {
-        System.out.println("Double Locking Singleton - " + this);
+        System.out.println("Singleton - Double Checked Locking - Fix - " + this);
     }
 }

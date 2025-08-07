@@ -1,6 +1,6 @@
-package com.conceptcoding.creationalpatterns.singleton;
+package com.conceptcoding.creationalpatterns.singleton.dclbugfix;
 
-// 4. Double Locking Singleton - Issue Demo
+// Singleton - Double Checked Locking - Issue Demo
 public class DBConnectionDoubleCheckedLockIssue {
 
     // Double Locking Singleton instance variable
@@ -26,6 +26,6 @@ public class DBConnectionDoubleCheckedLockIssue {
 
     // Method to display a message
     public void displayMessage() {
-        System.out.println("Double Locking Singleton - " + this);
+        System.out.println("Singleton - Double Checked Locking - Issue - " + this);
     }
 }
