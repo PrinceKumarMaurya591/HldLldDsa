@@ -3,6 +3,7 @@ package com.conceptcoding.structuralpatterns.flyweight.wordprocessor.solution;
 // Client – supplies extrinsic state when using flyweights
 public class WordProcessorSimulation {
     public static void main(String[] args) {
+        System.out.println("====== Flyweight Design Pattern ======");
         // Data: "Hello World"
         // Total 12 characters (including space)
         // t = 2 times (reused)
