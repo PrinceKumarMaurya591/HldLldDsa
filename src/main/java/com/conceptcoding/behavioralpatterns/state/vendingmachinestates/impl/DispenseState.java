@@ -27,6 +27,10 @@ public class DispenseState implements VendingMachineState {
         System.out.print("Product Dispensed: ");
         System.out.println(vendingMachine.getSelectedProduct().getName());
         System.out.println("Change Dispensed: " + vendingMachine.getChangeToReturn());
+        vendingMachine.getInventory().stream()
+                .filter(product -> product.getProductCode().equals(vendingMachine.getSelectedProduct().getProductCode()))
+                .findFirst()
+                .ifPresent(product -> product.setQuantity(product.getQuantity() - 1));
         vendingMachine.setCurrentState(new IdleState());
     }
 }

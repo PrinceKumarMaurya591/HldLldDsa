@@ -11,12 +11,14 @@ public class Product {
     String name;
     String productCode;
     Double price;
+    int quantity;
 
-    public Product(ProductType type, String name, String productCode, Double price) {
+    public Product(ProductType type, String name, String productCode, Double price, int quantity) {
         this.type = type;
         this.name = name;
         this.productCode = productCode;
         this.price = price;
+        this.quantity = quantity;
     }
 
     public ProductType getType() {
@@ -51,8 +53,19 @@ public class Product {
         this.price = price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     @Override
     public String toString() {
-        return "Product [type=" + type + ", name=" + name + ", productCode=" + productCode + ", price=" + price + "]";
+        return "Product [type=" + type + ", name=" + name +
+                ", productCode=" + productCode + ", price=" + price +
+                ", quantity: " + quantity +
+                "]";
     }
 }
