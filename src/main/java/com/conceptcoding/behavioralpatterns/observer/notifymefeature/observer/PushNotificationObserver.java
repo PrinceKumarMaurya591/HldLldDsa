@@ -3,7 +3,7 @@ package com.conceptcoding.behavioralpatterns.observer.notifymefeature.observer;
 import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observable.IphoneProduct;
 
 // Concrete observer for push notifications
-public class PushNotificationObserver implements StockAvailabilityObserver {
+public class PushNotificationObserver implements StockNotificationObserver {
     private final String userId;
     private final String deviceToken;
 
@@ -16,7 +16,7 @@ public class PushNotificationObserver implements StockAvailabilityObserver {
     public void notify(IphoneProduct iphoneProduct) {
         System.out.println("!! PUSH NOTIFICATION SENT to: " + deviceToken
                 + " for " + iphoneProduct.getProductName()
-                + " with available quantity " + iphoneProduct.getStockQuantity());
+                + " Your wishlist item is available now.");
     }
 
     @Override

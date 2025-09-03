@@ -6,7 +6,7 @@ import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observer.Pu
 
 public class ECommerceStockNotificationApp {
     public static void main(String[] args) {
-        System.out.println("----------------------------------------------------------------------------");
+        System.out.println("-----------------------------------------------------------------------------");
         System.out.println("###### E-commerce Store - Stock Availability Notification Feature Demo ######");
 
         // Create an iPhone product

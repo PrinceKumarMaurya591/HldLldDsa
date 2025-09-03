@@ -1,15 +1,15 @@
 package com.conceptcoding.behavioralpatterns.observer.notifymefeature.observable;
 
-import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observer.StockAvailabilityObserver;
+import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observer.StockNotificationObserver;
 
 import java.util.ArrayList;
 import java.util.List;
 
 // Concrete Observable
-public class IphoneProduct implements StockAvailabilityPublisher {
+public class IphoneProduct implements StockAvailabilityObservable {
     private String productId;
     private double price;
-    private List<StockAvailabilityObserver> stockObservers;
+    private List<StockNotificationObserver> stockObservers;
     private String productName;
     private int stockQuantity;
 
@@ -22,14 +22,14 @@ public class IphoneProduct implements StockAvailabilityPublisher {
     }
 
     @Override
-    public void addStockObserver(StockAvailabilityObserver observer) {
+    public void addStockObserver(StockNotificationObserver observer) {
         stockObservers.add(observer);
         System.out.println("[+]" + observer.getUserId() + " subscribed for notifications on " + productName);
 
     }
 
     @Override
-    public void removeStockObserver(StockAvailabilityObserver observer) {
+    public void removeStockObserver(StockNotificationObserver observer) {
         stockObservers.remove(observer);
         System.out.println("[-]" + observer.getUserId() + " unsubscribed for notifications on " + productName);
     }
@@ -37,18 +37,15 @@ public class IphoneProduct implements StockAvailabilityPublisher {
     @Override
     public void notifyStockObservers() {
         if (stockQuantity > 0 && !stockObservers.isEmpty()) {
-            System.out.print("Notifying " + stockObservers.size() + " subscribers...[");
-            System.out.println("STOCK ALERT: " + productName
-                    + " is now available!"
-                    + " Available quantity: " + stockQuantity
-                    + " | "
-                    + " Price: $" + price
-                    + "]");
+            System.out.print("Notifying " + stockObservers.size() + " subscribers... ");
+            System.out.println("[STOCK ALERT: " + productName + " is now available!"
+                    + " Available quantity: " + stockQuantity + " | "
+                    + " Price: $" + price + "]");
 
             // Create a copy to avoid concurrent modification
-            List<StockAvailabilityObserver> observersToNotify = new ArrayList<>(stockObservers);
+            List<StockNotificationObserver> observersToNotify = new ArrayList<>(stockObservers);
 
-            for (StockAvailabilityObserver observer : observersToNotify) {
+            for (StockNotificationObserver observer : observersToNotify) {
                 observer.notify(this);
             }
         }

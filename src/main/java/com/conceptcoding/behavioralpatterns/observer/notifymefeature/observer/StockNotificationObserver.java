@@ -3,7 +3,7 @@ package com.conceptcoding.behavioralpatterns.observer.notifymefeature.observer;
 import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observable.IphoneProduct;
 
 // Observer interface for stock availability notifications
-public interface StockAvailabilityObserver {
+public interface StockNotificationObserver {
     void notify(IphoneProduct iphoneProduct);
 
     String getNotificationMethod();

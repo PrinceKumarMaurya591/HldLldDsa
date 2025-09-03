@@ -23,13 +23,12 @@ public class ForecastDisplay implements WeatherObserver {
 
     // Display the forecast based on the current pressure
     public void display() {
-        System.out.print("Forecast: ");
         if (currentPressure > lastPressure) {
-            System.out.println("Improving weather on the way!");
+            System.out.println("Forecast: Improving weather on the way!");
         } else if (currentPressure == lastPressure) {
-            System.out.println("Weather is the same");
+            System.out.println("Forecast: Weather is the same");
         } else if (currentPressure < lastPressure) {
-            System.out.println("Watch out for cooler, rainy weather!");
+            System.out.println("Forecast: Watch out for cooler, rainy weather!");
         }
     }
 }
