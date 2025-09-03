@@ -37,10 +37,10 @@ public class IphoneProduct implements StockAvailabilityObservable {
     @Override
     public void notifyStockObservers() {
         if (stockQuantity > 0 && !stockObservers.isEmpty()) {
-            System.out.print("Notifying " + stockObservers.size() + " subscribers... ");
-            System.out.println("[STOCK ALERT: " + productName + " is now available!"
-                    + " Available quantity: " + stockQuantity + " | "
-                    + " Price: $" + price + "]");
+            System.out.println("Notifying " + stockObservers.size() + " subscribers... ");
+            System.out.println("[STOCK ALERT: " + productName + " is now available! "
+                    + "Available quantity: " + stockQuantity + " | "
+                    + "Price: $" + price + "]");
 
             // Create a copy to avoid concurrent modification
             List<StockNotificationObserver> observersToNotify = new ArrayList<>(stockObservers);
