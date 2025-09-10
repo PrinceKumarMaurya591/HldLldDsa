@@ -1,11 +1,11 @@
 package com.conceptcoding.behavioralpatterns.strategy.vehicledrivemodes.solution.context;
 
-import com.conceptcoding.behavioralpatterns.strategy.vehicledrivemodes.solution.strategies.NormalDrive;
+import com.conceptcoding.behavioralpatterns.strategy.vehicledrivemodes.solution.strategies.DriveStrategy;
 
 // Concrete context subclass
 public class GoodsVehicle extends Vehicle {
 
-    public GoodsVehicle() {
-        super(new NormalDrive());
+    public GoodsVehicle(DriveStrategy driveStrategy) {
+        super(driveStrategy);
     }
 }

@@ -1,11 +1,11 @@
 package com.conceptcoding.behavioralpatterns.strategy.vehicledrivemodes.solution.context;
 
-import com.conceptcoding.behavioralpatterns.strategy.vehicledrivemodes.solution.strategies.SportsDrive;
+import com.conceptcoding.behavioralpatterns.strategy.vehicledrivemodes.solution.strategies.DriveStrategy;
 
 // Concrete context subclass
 public class OffRoadVehicle extends Vehicle {
 
-    OffRoadVehicle() {
-        super(new SportsDrive());
+    OffRoadVehicle(DriveStrategy driveStrategy) {
+        super(driveStrategy);
     }
 }
