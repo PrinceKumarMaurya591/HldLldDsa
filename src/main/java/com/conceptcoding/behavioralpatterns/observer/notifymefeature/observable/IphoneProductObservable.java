@@ -6,14 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Concrete Observable
-public class IphoneProduct implements StockAvailabilityObservable {
-    private String productId;
-    private double price;
-    private List<StockNotificationObserver> stockObservers;
-    private String productName;
+public class IphoneProductObservable implements StockAvailabilityObservable {
+    private final String productId;
+    private final String productName;
+    private final double price;
+    private final List<StockNotificationObserver> stockObservers;
     private int stockQuantity;
 
-    public IphoneProduct(String productId, String productName, double price, int stockQuantity) {
+    public IphoneProductObservable(String productId, String productName, double price, int stockQuantity) {
         this.productId = productId;
         this.productName = productName;
         this.price = price;
@@ -38,20 +38,18 @@ public class IphoneProduct implements StockAvailabilityObservable {
     public void notifyStockObservers() {
         if (stockQuantity > 0 && !stockObservers.isEmpty()) {
             System.out.println("Notifying " + stockObservers.size() + " subscribers... ");
-            System.out.println("[STOCK ALERT: " + productName + " is now available! "
-                    + "Available quantity: " + stockQuantity + " | "
-                    + "Price: $" + price + "]");
 
             // Create a copy to avoid concurrent modification
             List<StockNotificationObserver> observersToNotify = new ArrayList<>(stockObservers);
 
             for (StockNotificationObserver observer : observersToNotify) {
-                observer.notify(this);
+                observer.update();
             }
         }
     }
 
     // Method to restock items
+    @Override
     public void restock(int quantity) {
         boolean wasOutOfStock = (stockQuantity == 0);
         stockQuantity += quantity;
@@ -63,6 +61,7 @@ public class IphoneProduct implements StockAvailabilityObservable {
     }
 
     // Method to purchase items
+    @Override
     public boolean purchase(int quantity) {
         if (stockQuantity >= quantity) {
             stockQuantity -= quantity;
