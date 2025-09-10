@@ -1,7 +1,5 @@
 package com.conceptcoding.behavioralpatterns.observer.notifymefeature.observer;
 
-import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observable.IphoneProduct;
-
 // Concrete observer for email notifications
 public class EmailNotificationObserver implements StockNotificationObserver {
     private final String userId;
@@ -13,10 +11,12 @@ public class EmailNotificationObserver implements StockNotificationObserver {
     }
 
     @Override
-    public void notify(IphoneProduct iPhoneProduct) {
-        System.out.println("!! EMAIL SENT to: " + emailAddress
-                + " for " + iPhoneProduct.getProductName() + "."
-                + " Your wishlist item is available now.");
+    public void update() {
+        sendEmail();
+    }
+
+    private void sendEmail() {
+        System.out.println("!! EMAIL SENT to: " + emailAddress + " - " + "Product is back in stock! Hurry Up!!");
     }
 
     @Override

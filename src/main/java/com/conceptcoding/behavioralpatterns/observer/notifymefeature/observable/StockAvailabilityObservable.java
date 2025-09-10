@@ -9,4 +9,8 @@ public interface StockAvailabilityObservable {
     void removeStockObserver(StockNotificationObserver observer);
 
     void notifyStockObservers();
+
+    boolean purchase(int quantity);
+
+    void restock(int quantity);
 }

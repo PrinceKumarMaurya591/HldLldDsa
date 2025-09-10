@@ -1,29 +1,32 @@
 package com.conceptcoding.behavioralpatterns.observer.notifymefeature;
 
-import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observable.IphoneProduct;
+import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observable.IphoneProductObservable;
+import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observable.StockAvailabilityObservable;
 import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observer.EmailNotificationObserver;
 import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observer.PushNotificationObserver;
+import com.conceptcoding.behavioralpatterns.observer.notifymefeature.observer.StockNotificationObserver;
 
 public class ECommerceStockNotificationApp {
     public static void main(String[] args) {
         System.out.println("-----------------------------------------------------------------------------");
         System.out.println("###### E-commerce Store - Stock Availability Notification Feature Demo ######");
 
-        // Create an iPhone product
-        IphoneProduct iphoneProduct = new IphoneProduct("ip15", "iphone 15", 1250, 10);
+        // Create an iPhone product - stock available = 10 units
+        StockAvailabilityObservable iphoneProduct = new IphoneProductObservable("ip15", "iphone 15", 1250, 10);
 
         // Create observers
-        PushNotificationObserver John_PUSH = new PushNotificationObserver("John123", "JohnDeviceP1");
-        PushNotificationObserver Katy_PUSH = new PushNotificationObserver("Katy678", "KatyDeviceP2");
-        EmailNotificationObserver Jane_EMAIL = new EmailNotificationObserver("Jane783", "jane783@gmail.com");
-        EmailNotificationObserver George_EMAIL = new EmailNotificationObserver("George993", "george993@gmail.com");
+        StockNotificationObserver John_PUSH = new PushNotificationObserver("John123", "JohnDeviceP1");
+        StockNotificationObserver Katy_PUSH = new PushNotificationObserver("Katy678", "KatyDeviceP2");
+        StockNotificationObserver Jane_EMAIL = new EmailNotificationObserver("Jane783", "jane783@gmail.com");
+        StockNotificationObserver George_EMAIL = new EmailNotificationObserver("George993", "george993@gmail.com");
 
         // Black Friday Sale - Purchase all 10 units
         iphoneProduct.purchase(10);
-        boolean success = iphoneProduct.purchase(1); // Failed purchase
 
-        if (!success) { // Failed purchase
-            // Register observers - John, Katy, Jane, George subscribe for notifications
+        // Stock unavailability leads to users subscribing for notifications
+        boolean success = iphoneProduct.purchase(1); // Failed purchase
+        if (!success) {
+            // Register observers - John, Katy, Jane, George subscribe to notifications upon stock availability
             iphoneProduct.addStockObserver(John_PUSH); // John
             iphoneProduct.addStockObserver(Katy_PUSH); // Katy
             iphoneProduct.addStockObserver(Jane_EMAIL); // Jane
@@ -33,6 +36,7 @@ public class ECommerceStockNotificationApp {
         // Restock 20 units of iPhone 15
         iphoneProduct.restock(20); // All 4 observers are notified
 
+        // Users purchase upon receiving notifications
         iphoneProduct.purchase(1); // John purchases 1 unit
         iphoneProduct.purchase(1); // Katy purchases 1 unit
 
