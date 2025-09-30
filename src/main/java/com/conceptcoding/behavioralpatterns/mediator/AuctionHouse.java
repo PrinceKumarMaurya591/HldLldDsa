@@ -9,13 +9,11 @@ public class AuctionHouse implements AuctionMediator {
     private String itemName;
     private double currentHighestBid;
     private IColleague currentHighestBidder;
-    private boolean auctionClosed;
 
     public AuctionHouse(String itemName, double startingPrice) {
         this.itemName = itemName;
         this.currentHighestBid = startingPrice;
         this.bidders = new ArrayList<>();
-        this.auctionClosed = false;
         System.out.println("[+] Auction House created for item: " + itemName + " with initial bid of $" + startingPrice);
     }
 
@@ -48,7 +46,6 @@ public class AuctionHouse implements AuctionMediator {
 
     @Override
     public void closeAuction() {
-        auctionClosed = true;
         if (currentHighestBidder != null) {
             System.out.println("\n===> [AUCTION UPDATE]");
             System.out.println("[+] Auction closed! Winner is " + currentHighestBidder.getName() +
