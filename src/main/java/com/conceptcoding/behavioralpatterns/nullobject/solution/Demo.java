@@ -6,7 +6,7 @@ import com.conceptcoding.behavioralpatterns.nullobject.Vehicle;
 
 public class Demo {
     public static void main(String[] args) {
-        System.out.println("\n##### Null Object Pattern: Problem Demo #####");
+        System.out.println("\n##### Null Object Pattern: Solution Demo #####");
 
         Vehicle car = VehicleFactory.getVehicle("car");
         printVehicleDetails(car);
@@ -24,28 +24,24 @@ public class Demo {
     }
 
     private static void printVehicleDetails(Vehicle vehicle) {
-        if (vehicle != null) {
-            if (vehicle instanceof Car) {
-                System.out.print("\n[+] Vehicle Details: ");
-                Car car = (Car) vehicle;
-                System.out.println(car.getClass().getSimpleName() + " [Model=" + car.getModel()
-                        + ", Color=" + car.getColor() + ", Seating Capacity=" + car.getSeatingCapacity()
-                        + ", Fuel Tank Capacity=" + car.getFuelTankCapacity() + "]");
+        if (vehicle instanceof Car) {
+            System.out.print("\n[+] Vehicle Details: ");
+            Car car = (Car) vehicle;
+            System.out.println(car.getClass().getSimpleName() + " [Model=" + car.getModel()
+                    + ", Color=" + car.getColor() + ", Seating Capacity=" + car.getSeatingCapacity()
+                    + ", Fuel Tank Capacity=" + car.getFuelTankCapacity() + "]");
 
-            }
-            if (vehicle instanceof Bike) {
-                System.out.print("\n[+] Vehicle Details: ");
-                Bike bike = (Bike) vehicle;
-                System.out.println(bike.getClass().getSimpleName() + " [Model=" + bike.getModel()
-                        + ", Color=" + bike.getColor() + ", Fuel Tank Capacity=" + bike.getFuelTankCapacity() + "]");
-            }
+        }
+        if (vehicle instanceof Bike) {
+            System.out.print("\n[+] Vehicle Details: ");
+            Bike bike = (Bike) vehicle;
+            System.out.println(bike.getClass().getSimpleName() + " [Model=" + bike.getModel()
+                    + ", Color=" + bike.getColor() + ", Fuel Tank Capacity=" + bike.getFuelTankCapacity() + "]");
         }
     }
 
     private static void testDrive(Vehicle vehicle) {
-        if (vehicle != null) {
-            vehicle.start();
-            vehicle.stop();
-        }
+        vehicle.start();
+        vehicle.stop();
     }
 }
