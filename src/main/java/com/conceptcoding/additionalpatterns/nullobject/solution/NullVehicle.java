@@ -1,6 +1,6 @@
-package com.conceptcoding.behavioralpatterns.nullobject.solution;
+package com.conceptcoding.additionalpatterns.nullobject.solution;
 
-import com.conceptcoding.behavioralpatterns.nullobject.Vehicle;
+import com.conceptcoding.additionalpatterns.nullobject.Vehicle;
 
 public class NullVehicle extends Vehicle {
     private final String model;

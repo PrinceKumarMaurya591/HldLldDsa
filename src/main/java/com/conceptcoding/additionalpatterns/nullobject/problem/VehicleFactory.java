@@ -1,8 +1,8 @@
-package com.conceptcoding.behavioralpatterns.nullobject.problem;
+package com.conceptcoding.additionalpatterns.nullobject.problem;
 
-import com.conceptcoding.behavioralpatterns.nullobject.Bike;
-import com.conceptcoding.behavioralpatterns.nullobject.Car;
-import com.conceptcoding.behavioralpatterns.nullobject.Vehicle;
+import com.conceptcoding.additionalpatterns.nullobject.Bike;
+import com.conceptcoding.additionalpatterns.nullobject.Car;
+import com.conceptcoding.additionalpatterns.nullobject.Vehicle;
 
 public class VehicleFactory {
 

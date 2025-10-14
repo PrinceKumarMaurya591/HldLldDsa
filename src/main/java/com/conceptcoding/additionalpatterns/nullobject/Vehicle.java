@@ -1,4 +1,4 @@
-package com.conceptcoding.behavioralpatterns.nullobject;
+package com.conceptcoding.additionalpatterns.nullobject;
 
 public abstract class Vehicle {
 
