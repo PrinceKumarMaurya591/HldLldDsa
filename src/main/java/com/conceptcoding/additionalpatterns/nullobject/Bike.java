@@ -1,4 +1,4 @@
-package com.conceptcoding.behavioralpatterns.nullobject;
+package com.conceptcoding.additionalpatterns.nullobject;
 
 public class Bike extends Vehicle {
     private String model;
