@@ -14,10 +14,10 @@ public class Demo {
 
     public static void main(String[] args) {
 
-        Demo ob = new Demo();
+        Demo demoObj = new Demo();
 
-        Team teamA = ob.addTeam("India");
-        Team teamB = ob.addTeam("SriLanka");
+        Team teamA = demoObj.addTeam("India");
+        Team teamB = demoObj.addTeam("SriLanka");
 
         MatchType matchType = new T20Match();
         Match match = new Match(teamA, teamB, null, "SMS STADIUM", matchType);
