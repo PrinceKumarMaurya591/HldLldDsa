@@ -15,8 +15,9 @@ public abstract class LogProcessor {
     }
 
     public void logMessage(int level, String message) {
-        if (this.level <= level) {
+        if (this.level == level) {
             write(message);
+            return;
         }
 
         // Pass to next handler in chain if exists
