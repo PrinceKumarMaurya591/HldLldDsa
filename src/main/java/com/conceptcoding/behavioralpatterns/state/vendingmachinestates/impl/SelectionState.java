@@ -1,34 +1,56 @@
 package com.conceptcoding.behavioralpatterns.state.vendingmachinestates.impl;
 
-import com.conceptcoding.behavioralpatterns.state.context.Product;
+import com.conceptcoding.behavioralpatterns.state.context.Item;
 import com.conceptcoding.behavioralpatterns.state.context.VendingMachine;
-import com.conceptcoding.behavioralpatterns.state.vendingmachinestates.VendingMachineState;
+import com.conceptcoding.behavioralpatterns.state.vendingmachinestates.Coin;
+import com.conceptcoding.behavioralpatterns.state.vendingmachinestates.State;
 
-import java.util.Optional;
+import java.util.List;
 
-// Step 2b: Concrete State - SelectionState
-// When the customer is selecting a product
-public class SelectionState extends VendingMachineState {
+public class SelectionState extends State {
+
+    public SelectionState(){
+        System.out.println("Currently Vending machine is in SelectionState");
+    }
 
     @Override
-    public void chooseProduct(VendingMachine vendingMachine, String productCode) throws Exception {
-        System.out.println("CurrentState: " + vendingMachine.getCurrentState().getClass().getSimpleName());
-        System.out.println("Product Selection in progress...");
-        System.out.println("Product selected: " + productCode);
-        Optional<Product> selectedProduct = vendingMachine.getInventory()
-                .stream()
-                .filter(product -> product.getProductCode().equals(productCode)).findFirst();
-        if (selectedProduct.isEmpty()) {  // Wrong Product Code
-            vendingMachine.setCurrentState(new IdleState());
-            throw new Exception("WRONG PRODUCT CODE: The product code is invalid. Please enter the correct code.");
-        }
-        if (selectedProduct.get().getQuantity() == 0) { // Out of Stock
-            vendingMachine.setCurrentState(new IdleState());
-            throw new Exception("OUT OF STOCK: The product is out of stock. Please select another product.");
-        }
-        vendingMachine.setSelectedProduct(selectedProduct.get());
-        vendingMachine.setCurrentState(new CollectMoneyState());
-    }
-    
-}
+    public void chooseProduct(VendingMachine machine, int codeNumber) throws Exception{
 
+        //1. get item of this codeNumber
+        Item item = machine.getInventory().getItem(codeNumber);
+
+        //2. total amount paid by User
+        int paidByUser = 0;
+        for(Coin coin : machine.getCoinList()){
+            paidByUser = paidByUser + coin.value;
+        }
+
+        //3. compare product price and amount paid by user
+        if(paidByUser < item.getPrice()) {
+            System.out.println("Insufficient Amount, Product you selected is for price: " + item.getPrice() + " and you paid: " + paidByUser);
+            refundFullMoney(machine);
+            throw new Exception("insufficient amount");
+        }
+        else if(paidByUser >= item.getPrice()) {
+
+            if(paidByUser > item.getPrice()) {
+                getChange(paidByUser-item.getPrice());
+            }
+            machine.setVendingMachineState(new DispenseState(machine, codeNumber));
+        }
+    }
+
+    @Override
+    public int getChange(int returnExtraMoney) throws Exception{
+        //actual logic should be to return COINs in the dispense tray, but for simplicity i am just returning the amount to be refunded
+        System.out.println("Returned the change in the Coin Dispense Tray: " + returnExtraMoney);
+        return returnExtraMoney;
+    }
+
+    @Override
+    public List<Coin> refundFullMoney(VendingMachine machine) throws Exception{
+        System.out.println("Returned the full amount back in the Coin Dispense Tray");
+        machine.setVendingMachineState(new IdleState(machine));
+        return machine.getCoinList();
+    }
+}

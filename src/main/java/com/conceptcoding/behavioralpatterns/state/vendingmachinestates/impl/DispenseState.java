@@ -1,24 +1,23 @@
 package com.conceptcoding.behavioralpatterns.state.vendingmachinestates.impl;
 
+import com.conceptcoding.behavioralpatterns.state.context.Item;
 import com.conceptcoding.behavioralpatterns.state.context.VendingMachine;
-import com.conceptcoding.behavioralpatterns.state.vendingmachinestates.VendingMachineState;
+import com.conceptcoding.behavioralpatterns.state.vendingmachinestates.State;
 
-// Step 2d: Concrete State - DispenseState
-// When machine is dispensing the product
-public class DispenseState extends VendingMachineState {
+public class DispenseState extends State {
+
+    DispenseState(VendingMachine machine, int codeNumber) throws Exception{
+        System.out.println("Currently Vending machine is in DispenseState");
+        dispenseProduct(machine, codeNumber);
+    }
 
     @Override
-    public void dispenseProduct(VendingMachine vendingMachine) throws Exception {
-        System.out.println("Current State: " + vendingMachine.getCurrentState().getClass().getSimpleName());
-        System.out.print("Product Dispensed: ");
-        System.out.println(vendingMachine.getSelectedProduct().getName());
-        System.out.println("Change Dispensed: " + vendingMachine.getChangeToReturn());
-        vendingMachine.getInventory().stream()
-                .filter(product -> product.getProductCode().equals(vendingMachine.getSelectedProduct().getProductCode()))
-                .findFirst()
-                .ifPresent(product -> product.setQuantity(product.getQuantity() - 1));
-        vendingMachine.setCurrentState(new IdleState());
+    public Item dispenseProduct(VendingMachine machine, int codeNumber) throws Exception{
+        System.out.println("Product has been dispensed");
+        Item item = machine.getInventory().getItem(codeNumber);
+        machine.getInventory().updateSoldOutItem(codeNumber);
+        machine.setVendingMachineState(new IdleState(machine));
+        return item;
     }
-    
 }
 

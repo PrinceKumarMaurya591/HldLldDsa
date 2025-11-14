@@ -1,72 +1,89 @@
 package com.conceptcoding.behavioralpatterns.state;
 
 
+import com.conceptcoding.behavioralpatterns.state.context.Item;
+import com.conceptcoding.behavioralpatterns.state.context.ItemShelf;
+import com.conceptcoding.behavioralpatterns.state.context.ItemType;
 import com.conceptcoding.behavioralpatterns.state.context.VendingMachine;
+import com.conceptcoding.behavioralpatterns.state.vendingmachinestates.Coin;
+import com.conceptcoding.behavioralpatterns.state.vendingmachinestates.State;
 
-// Client code - Interacts with Context Class (VendingMachine)
 public class VendingMachineAppDemo {
 
-    public static void main(String[] args) {
-        System.out.println("###### State Design Pattern - Vending Machine App Demo ######");
+    public static void main(String args[]){
 
-        VendingMachine vendingMachine = new VendingMachine(); // Stock up the vending machine
-        System.out.println("Flow: Begin Transaction > Choose Product > Pay > Collect Product");
-        vendingMachine.displayInventory();
+        VendingMachine vendingMachine = new VendingMachine();
         try {
-            // Happy Flow 1: User Buys Lays
-            System.out.println("------------------------------------------------------------------------------------");
-            vendingMachine.beginTransaction();
-            vendingMachine.chooseProduct("201"); // Lays - 20 rupees
-            vendingMachine.insertCoin(20.00);
-            vendingMachine.dispenseProduct();
 
-            // Happy Flow 2: User Buys Snickers
-            System.out.println("------------------------------------------------------------------------------------");
-            vendingMachine.beginTransaction();
-            vendingMachine.chooseProduct("303"); // Snickers - 50 rupees
-            vendingMachine.insertCoin(100.00); // Change to be returned: 50 rupees
-            vendingMachine.dispenseProduct();
+            System.out.println("|");
+            System.out.println("filling up the inventory");
+            System.out.println("|");
 
-            //Negative Flow 1: User buys out of stock product
-            // 5Star Quantity is 1
-            System.out.println("------------------------------------------------------------------------------------");
-            vendingMachine.beginTransaction();
-            vendingMachine.chooseProduct("303"); // 5star - 50 rupees
-            vendingMachine.insertCoin(35.00); // Change to be returned: 15 rupees
-            vendingMachine.dispenseProduct();
-            // 5Star Quantity is now 0
-            System.out.println("------------------------------------------------------------------------------------");
-            vendingMachine.beginTransaction();
-            vendingMachine.chooseProduct("303"); // 5star - 50 rupees
-            vendingMachine.insertCoin(35.00); // OUT OF STOCK exception: Refund 35 rupees
-            vendingMachine.dispenseProduct(); // This line will not execute
+            fillUpInventory(vendingMachine);
+            displayInventory(vendingMachine);
 
-            // Negative Flow 2: User pays insufficient amount
-            /*System.out.println("------------------------------------------------------------------------------------");
-            vendingMachine.beginTransaction();
-            vendingMachine.chooseProduct("103"); // Sprite - 50 rupees
-            vendingMachine.insertCoin(20.00); // throws exception - INSUFFICIENT PAYMENT exception
-            vendingMachine.dispenseProduct(); // This line will not execute*/
+            System.out.println("|");
+            System.out.println("clicking on InsertCoinButton");
+            System.out.println("|");
 
-            // Negative Flow 3: User enters wrong product code
-            /*System.out.println("------------------------------------------------------------------------------------");
-            vendingMachine.beginTransaction();
-            vendingMachine.chooseProduct("999"); // WRONG PRODUCT CODE exception
-            vendingMachine.insertCoin(50.00); // this line will not execute
-            vendingMachine.dispenseProduct(); // this line will not execute*/
+            State vendingState = vendingMachine.getVendingMachineState();
+            vendingState.clickOnInsertCoinButton(vendingMachine);
 
-            // Negative Flow 4: User tries to buy product without beginning a transaction
-            /*System.out.println("------------------------------------------------------------------------------------");
-            vendingMachine.chooseProduct("201"); // throws exception
-            vendingMachine.insertCoin(50.00); // throws exception
-            vendingMachine.dispenseProduct(); // throws exception*/
+            vendingState = vendingMachine.getVendingMachineState();
+            vendingState.insertCoin(vendingMachine, Coin.NICKEL);
+            vendingState.insertCoin(vendingMachine, Coin.QUARTER);
+            // vendingState.insertCoin(vendingMachine, Coin.NICKEL);
 
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        } finally {
-            System.out.println("------------------------------------------------------------------------------------");
-            System.out.println("Flow: New Transaction > Choose Product > Pay > Collect Product");
-            vendingMachine.displayInventory();
+            System.out.println("|");
+            System.out.println("clicking on ProductSelectionButton");
+            System.out.println("|");
+            vendingState.clickOnStartProductSelectionButton(vendingMachine);
+
+            vendingState = vendingMachine.getVendingMachineState();
+            vendingState.chooseProduct(vendingMachine, 102);
+
+            displayInventory(vendingMachine);
+
+        }
+        catch (Exception e){
+            displayInventory(vendingMachine);
+        }
+
+
+    }
+
+    private static void fillUpInventory(VendingMachine vendingMachine){
+        ItemShelf[] slots = vendingMachine.getInventory().getInventory();
+        for (int i = 0; i < slots.length; i++) {
+            Item newItem = new Item();
+            if(i >=0 && i<3) {
+                newItem.setType(ItemType.COKE);
+                newItem.setPrice(12);
+            }else if(i >=3 && i<5){
+                newItem.setType(ItemType.PEPSI);
+                newItem.setPrice(9);
+            }else if(i >=5 && i<7){
+                newItem.setType(ItemType.JUICE);
+                newItem.setPrice(13);
+            }else if(i >=7 && i<10){
+                newItem.setType(ItemType.SODA);
+                newItem.setPrice(7);
+            }
+            slots[i].setItem(newItem);
+            slots[i].setSoldOut(false);
         }
     }
+
+    private static void displayInventory(VendingMachine vendingMachine){
+
+        ItemShelf[] slots = vendingMachine.getInventory().getInventory();
+        for (int i = 0; i < slots.length; i++) {
+
+            System.out.println("CodeNumber: " + slots[i].getCode() +
+                    " Item: " + slots[i].getItem().getType().name() +
+                    " Price: " + slots[i].getItem().getPrice() +
+                    " isAvailable: " + !slots[i].isSoldOut());
+        }
+    }
+
 }
