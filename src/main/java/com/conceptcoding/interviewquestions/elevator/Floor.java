@@ -5,19 +5,20 @@ import com.conceptcoding.interviewquestions.elevator.enums.ElevatorDirection;
 public class Floor {
 
     int floorNumber;
-    ExternalButton externalButton;
-    Display display;
+    ExternalButton upButton;
+    ExternalButton downButton;
 
-    public Floor(int floorNumber) {
+    public Floor(int floorNumber, ExternalDispatcher dispatcher) {
         this.floorNumber = floorNumber;
-        externalButton = new ExternalButton();
+        this.upButton = new ExternalButton(dispatcher);
+        this.downButton = new ExternalButton(dispatcher);
     }
 
-    public void pressButton(ElevatorDirection elevatorDirection) {
-        externalButton.pressButton(floorNumber, elevatorDirection);
+    public void pressUpButton() {
+        upButton.pressButton(floorNumber, ElevatorDirection.UP);
     }
 
-    public void showDisplay() {
-        display.showDisplay();
+    public void pressDownButton() {
+        downButton.pressButton(floorNumber, ElevatorDirection.DOWN);
     }
 }

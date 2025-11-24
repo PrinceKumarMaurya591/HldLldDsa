@@ -6,21 +6,17 @@ import java.util.List;
 
 public class ExternalDispatcher {
 
-    List<ElevatorController> elevatorControllerList = ElevatorCreator.elevatorControllerList;
+    ElevatorScheduler scheduler;
 
-    public void submitExternalRequest(int floor, ElevatorDirection elevatorDirection) {
+    public ExternalDispatcher(ElevatorScheduler scheduler) {
+        this.scheduler = scheduler;
+    }
 
-        // For simplicity, i am following even odd logic to assign the elevator to the floor
-        for (ElevatorController elevatorController : elevatorControllerList) {
+    public void submitExternalRequest(int floor, ElevatorDirection direction) {
 
-            int elevatorID = elevatorController.elevatorCar.id;
-            if (elevatorID % 2 == 1 && floor % 2 == 1) {
-                elevatorController.submitExternalRequest(floor, elevatorDirection);
-            } else if (elevatorID % 2 == 0 && floor % 2 == 0) {
-                elevatorController.submitExternalRequest(floor, elevatorDirection);
-
-            }
-        }
+        ElevatorController controller =
+                scheduler.assignElevator(floor, direction);
+        controller.submitRequest(floor);
     }
 
 }

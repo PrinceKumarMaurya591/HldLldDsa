@@ -1,12 +1,17 @@
 package com.conceptcoding.interviewquestions.elevator;
 
-import java.util.List;
-
 public class InternalDispatcher {
 
-    List<ElevatorController> elevatorControllerList = ElevatorCreator.elevatorControllerList;
+    private static InternalDispatcher INSTANCE = new InternalDispatcher();
 
-    public void submitInternalRequest(int floor, ElevatorCar elevatorCar) {
+    private InternalDispatcher() {}
 
+    public static InternalDispatcher getInstance() {
+        return INSTANCE;
+    }
+
+    // elevatorController is known based on button press origin
+    public void submitInternalRequest(int destinationFloor, ElevatorController controller) {
+        controller.submitRequest(destinationFloor);
     }
 }

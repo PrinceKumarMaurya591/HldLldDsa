@@ -3,16 +3,20 @@ package com.conceptcoding.interviewquestions.elevator;
 import com.conceptcoding.interviewquestions.elevator.enums.DoorState;
 
 public class Door {
-    DoorState doorState;
+    private DoorState doorState;
 
-    public void openDoor() {
-        doorState = DoorState.DOOR_OPEN;
-        System.out.println("Opening the Elevator door ");
+    Door() {
+        doorState = DoorState.DOOR_CLOSED;
     }
 
-    public void closeDoor() {
+    public void openDoor(int id) {
+        doorState = DoorState.DOOR_OPEN;
+        System.out.println("Opening the Elevator door of elevator:" + id);
+    }
+
+    public void closeDoor(int id) {
         doorState = DoorState.DOOR_CLOSED;
-        System.out.println("Closing the Elevator door");
+        System.out.println("Closing the Elevator door of elevator:" + id);
     }
 
 }

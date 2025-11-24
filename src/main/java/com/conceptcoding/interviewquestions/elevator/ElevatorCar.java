@@ -1,66 +1,70 @@
 package com.conceptcoding.interviewquestions.elevator;
 
 import com.conceptcoding.interviewquestions.elevator.enums.ElevatorDirection;
-import com.conceptcoding.interviewquestions.elevator.enums.ElevatorState;
 
 public class ElevatorCar {
 
     int id;
-    Display display;
-    InternalButton internalButton;
-    ElevatorState elevatorState;
     int currentFloor;
-    ElevatorDirection elevatorDirection;
+    ElevatorDirection movingDirection;
     Door door;
 
-    public ElevatorCar() {
-        display = new Display();
-        internalButton = new InternalButton();
-        elevatorState = ElevatorState.IDLE;
+    public ElevatorCar(int id) {
+        this.id = id;
         currentFloor = 0;
-        elevatorDirection = ElevatorDirection.UP;
+        movingDirection = ElevatorDirection.IDLE;
         door = new Door();
-
     }
 
     public void showDisplay() {
-        display.showDisplay();
+        System.out.println("elevator:" + id + " Current floor: " + currentFloor + " going: " + movingDirection);
     }
 
-    public void pressButton(int destination) {
-        internalButton.pressButton(destination, this);
-    }
+    public void moveElevator(int destinationFloor) {
+        //this is dump object, so if command has come, to go particular direction and particular floor, it just move
+        //no matter what its current state and floor.
 
-    public void setDisplay() {
-        this.display.setDisplay(currentFloor, elevatorDirection);
-    }
-
-    boolean moveElevator(ElevatorDirection dir, int destinationFloor) {
-        int startFloor = currentFloor;
-        if (dir == ElevatorDirection.UP) {
-            for (int i = startFloor; i <= destinationFloor; i++) {
-
-                this.currentFloor = startFloor;
-                setDisplay();
-                showDisplay();
-                if (i == destinationFloor) {
-                    return true;
-                }
-            }
+        if (this.currentFloor == destinationFloor) {
+            door.openDoor(id);
+            return;
         }
 
-        if (dir == ElevatorDirection.DOWN) {
-            for (int i = startFloor; i >= destinationFloor; i--) {
+        int startFloor = this.currentFloor;
+        door.closeDoor(id);
+        if(destinationFloor>=currentFloor) {
+            movingDirection = ElevatorDirection.UP;
+            showDisplay();
+            //+1 i am doing bcoz, floor start from 0,1,2.... so if anyone goes from 1st floor to 2nd, so only 1 floor
+            //lift has to move, not 2.
+            for (int i = startFloor+1; i<=destinationFloor; i++) {
+                try {
+                    Thread.sleep(5);
+                }catch (Exception e) {
 
-                this.currentFloor = startFloor;
-                setDisplay();
-                showDisplay();
-                if (i == destinationFloor) {
-                    return true;
                 }
+                setCurrentFloor(i);
+                showDisplay();
             }
         }
-        return false;
+        else  {
+            movingDirection = ElevatorDirection.DOWN;
+
+            showDisplay();
+            for (int i = startFloor-1; i>=destinationFloor; i--) {
+                try {
+                    Thread.sleep(5);
+                }catch (Exception e) {
+
+                }
+                setCurrentFloor(i);
+                showDisplay();
+            }
+        }
+        door.openDoor(id);
     }
 
+    public void setCurrentFloor(int currentFloor) {
+        this.currentFloor = currentFloor;
+    }
 }
+
