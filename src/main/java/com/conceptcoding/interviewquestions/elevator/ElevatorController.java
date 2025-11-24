@@ -34,17 +34,10 @@ public class ElevatorController implements Runnable {
             if (!upMinPQ.contains(destinationFloor)) {
                 upMinPQ.offer(destinationFloor);
             }
-
-            List<Integer> copy = new ArrayList<>(upMinPQ);
-            Collections.sort(copy);
-            System.out.println("upMinPQ: " + copy);
         } else {
             if (!downMaxPQ.contains(destinationFloor)) {
                 downMaxPQ.offer(destinationFloor);
             }
-            List<Integer> copy = new ArrayList<>(downMaxPQ);
-            copy.sort(Collections.reverseOrder());   // or Collections.sort(copy, Collections.reverseOrder());
-            System.out.println("downMaxPQ: " + copy);
         }
 
         synchronized (monitor) {
