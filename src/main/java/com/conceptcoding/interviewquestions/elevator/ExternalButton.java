@@ -4,15 +4,15 @@ import com.conceptcoding.interviewquestions.elevator.enums.ElevatorDirection;
 
 public class ExternalButton {
 
-    ElevatorDirection directionRequest;
-    ExternalDispatcher externalDispatcher;
+    private final ExternalDispatcher dispatcher;
 
-    public ExternalButton() {
-        externalDispatcher = new ExternalDispatcher();
+    public ExternalButton(ExternalDispatcher dispatcher) {
+        this.dispatcher = dispatcher;
     }
 
-    public void pressButton(int floor, ElevatorDirection elevatorDirection) {
-        directionRequest = elevatorDirection;
-        externalDispatcher.submitExternalRequest(floor, elevatorDirection);
+    // this direction of external button is only helpful in selecting the correct elevator
+    public void pressButton(int floor, ElevatorDirection direction) {
+        dispatcher.submitExternalRequest(floor, direction);
     }
 }
+

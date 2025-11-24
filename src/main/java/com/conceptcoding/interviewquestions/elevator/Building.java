@@ -1,24 +1,19 @@
 package com.conceptcoding.interviewquestions.elevator;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Building {
 
-    List<Floor> floorList;
+    List<Floor> floors = new ArrayList<>();
 
-    Building(List<Floor> floors) {
-        this.floorList = floors;
+    public Building(int totalFloors, ExternalDispatcher dispatcher) {
+        for (int i = 1; i <= totalFloors; i++) {
+            floors.add(new Floor(i, dispatcher));
+        }
     }
 
-    public void addFloors(Floor newFloor) {
-        floorList.add(newFloor);
-    }
-
-    public void removeFloors(Floor removeFloor) {
-        floorList.remove(removeFloor);
-    }
-
-    List<Floor> getAllFloorList() {
-        return floorList;
+    public Floor getFloor(int floor) {
+        return floors.get(floor-1);
     }
 }

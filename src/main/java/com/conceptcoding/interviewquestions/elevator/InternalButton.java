@@ -3,17 +3,17 @@ package com.conceptcoding.interviewquestions.elevator;
 
 public class InternalButton {
 
-    InternalDispatcher dispatcher = new InternalDispatcher();
+    private final ElevatorController controller;
 
-    int[] floors = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-    int floorSelected;
-
-    void pressButton(int destination, ElevatorCar elevatorCar) {
-
-        // 1. Check if destination is in the list of available floors
-
-        // 2. Submit the request to the jobDispatcher
-        dispatcher.submitInternalRequest(destination, elevatorCar);
+    public InternalButton(ElevatorController controller) {
+        this.controller = controller;
     }
 
+    public void pressButton(int destinationFloor) {
+        //we can also remove teh Internal dispatcher from mid, but generally say for validation, controller and
+        //similar code flow like external button, its good have
+
+        InternalDispatcher.getInstance()
+                .submitInternalRequest(destinationFloor, controller);
+    }
 }

@@ -2,42 +2,92 @@ package com.conceptcoding.interviewquestions.elevator;
 
 import com.conceptcoding.interviewquestions.elevator.enums.ElevatorDirection;
 
-import java.util.PriorityQueue;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.concurrent.PriorityBlockingQueue;
 
-public class ElevatorController {
+public class ElevatorController implements Runnable {
 
-    PriorityQueue<Integer> upMinPQ;
-    PriorityQueue<Integer> downMaxPQ;
+    PriorityBlockingQueue<Integer> upMinPQ;
+    PriorityBlockingQueue<Integer> downMaxPQ;
+
     ElevatorCar elevatorCar;
+
+    private final Object monitor = new Object();
 
     ElevatorController(ElevatorCar elevatorCar) {
 
         this.elevatorCar = elevatorCar;
-        upMinPQ = new PriorityQueue<>();
-        downMaxPQ = new PriorityQueue<>((a, b) -> b - a);
-
+        upMinPQ = new PriorityBlockingQueue<>();
+        downMaxPQ = new PriorityBlockingQueue<>(10, (a, b) -> b - a);
     }
 
-    public void submitExternalRequest(int floor, ElevatorDirection elevatorDirection) {
+    public void submitRequest(int destinationFloor) {
+        enqueueRequest(destinationFloor);
+    }
 
-        if (elevatorDirection == ElevatorDirection.DOWN) {
-            downMaxPQ.offer(floor);
+    private void enqueueRequest(int destinationFloor) {
+        System.out.println("Request details-> destinationFloor: " + destinationFloor + " accepted by elevator:" + elevatorCar.id);
+
+        if (destinationFloor >= elevatorCar.currentFloor) {
+            if (!upMinPQ.contains(destinationFloor)) {
+                upMinPQ.offer(destinationFloor);
+            }
+
+            List<Integer> copy = new ArrayList<>(upMinPQ);
+            Collections.sort(copy);
+            System.out.println("upMinPQ: " + copy);
         } else {
-            upMinPQ.offer(floor);
+            if (!downMaxPQ.contains(destinationFloor)) {
+                downMaxPQ.offer(destinationFloor);
+            }
+            List<Integer> copy = new ArrayList<>(downMaxPQ);
+            copy.sort(Collections.reverseOrder());   // or Collections.sort(copy, Collections.reverseOrder());
+            System.out.println("downMaxPQ: " + copy);
+        }
+
+        synchronized (monitor) {
+            monitor.notify();   // wake elevator thread
         }
     }
 
-    public void submitInternalRequest(int floor) {
-
+    @Override
+    public void run() {
+        controlElevator();
     }
 
     public void controlElevator() {
+
         while (true) {
 
-            if (elevatorCar.elevatorDirection == ElevatorDirection.UP) {
+            //no request, go to sleep
+            synchronized (monitor) {
+                while (upMinPQ.isEmpty() && downMaxPQ.isEmpty()) {
+                    try {
+                        System.out.println("elevator:" + elevatorCar.id + " is IDLE");
+                        elevatorCar.movingDirection = ElevatorDirection.IDLE;
+                        monitor.wait(); // sleep until request arrives
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                    }
+                }
+            }
 
 
+            while (!upMinPQ.isEmpty()) {
+                int floor = upMinPQ.poll();
+                System.out.println("Serving floor: " + floor + " by elevator:" + elevatorCar.id + " currentFloor: " + elevatorCar.currentFloor);
+                elevatorCar.moveElevator(floor);
+            }
+
+
+            while (!downMaxPQ.isEmpty()) {
+                int floor = downMaxPQ.poll();
+                System.out.println("Serving floor: " + floor + " by elevator:" + elevatorCar.id + " currentFloor: " + elevatorCar.currentFloor);
+                elevatorCar.moveElevator(floor);
             }
         }
     }
 }
+
