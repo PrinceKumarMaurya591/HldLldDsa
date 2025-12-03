@@ -1,116 +1,133 @@
 package com.conceptcoding.interviewquestions.carrental;
 
-import com.conceptcoding.interviewquestions.carrental.payment.PaymentMode;
-import com.conceptcoding.interviewquestions.carrental.product.Bike;
-import com.conceptcoding.interviewquestions.carrental.product.Car;
+import com.conceptcoding.interviewquestions.carrental.Bill.Bill;
+import com.conceptcoding.interviewquestions.carrental.Bill.DailyBillingStrategy;
+import com.conceptcoding.interviewquestions.carrental.payment.Payment;
+import com.conceptcoding.interviewquestions.carrental.payment.UPIPaymentStrategy;
 import com.conceptcoding.interviewquestions.carrental.product.Vehicle;
 import com.conceptcoding.interviewquestions.carrental.product.VehicleType;
 import com.conceptcoding.interviewquestions.carrental.reservation.Reservation;
-import com.conceptcoding.interviewquestions.carrental.reservation.ReservationStatus;
 import com.conceptcoding.interviewquestions.carrental.reservation.ReservationType;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 public class Demo {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-        System.out.println("\nLLD: Simulating a Car Rental System...");
+        System.out.println("\n===== LLD: Car Rental System Demo =====");
 
-        // Set up a car rental store - add users and vehicles in a store
-        List<User> users = addUsers();
-        List<Vehicle> vehicles = addVehicles();
-        List<Store> stores = addStores(vehicles);
+        VehicleRentalSystem rentalSystem = new VehicleRentalSystem();
 
-        VehicleRentalSystem rentalSystem = new VehicleRentalSystem(stores, users);
+        // ---------------------------------------------------------
+        // 1. Create Stores in System
+        // ---------------------------------------------------------
 
-        // 0. User comes
-        User user = users.getFirst();
+        // Create a store1
+        Location store1Location = new Location(
+                45,
+                "Area1",
+                "City1",
+                "State1",
+                "India",
+                12345
+        );
+        Store store1 = new Store(1001, store1Location);
+        rentalSystem.addStore(store1);
 
-        // 1. User selects the store
-        Store store = rentalSystem.getStore(1081);
+        // ---------------------------------------------------------
+        // 2. Create Users in System
+        // ---------------------------------------------------------
 
-        // 2. User selects the vehicle
-        List<Vehicle> storeVehicles = store.getVehicles(VehicleType.FOUR_WHEELER);
+        // Create 2 users
+        User user1 = new User(801, "SJ", "DL2022GDG556690");
+        User user2 = new User(802, "DJ", "DL2017DHW9090765231");
+        rentalSystem.addUser(user1);
+        rentalSystem.addUser(user2);
 
-        // 3. User books the vehicle
-        LocalDate fromDate = LocalDate.of(2025, 04, 19);
-        LocalDate toDate = LocalDate.of(2025, 04, 22);
-        Reservation reservation = store.createReservation(storeVehicles.get(0), users.get(0), fromDate, toDate, ReservationType.DAILY);
 
-        // 4. User starts the trip
-        store.updateReservation(reservation, ReservationStatus.IN_USE);
+        // ---------------------------------------------------------
+        // 3. Add vehicles to store inventory
+        // ---------------------------------------------------------
+        Vehicle v1 = new Vehicle(1, "DL1234", VehicleType.FOUR_WHEELER);
+        v1.setDailyRentalCost(1100);
 
-        // 5. User submits the vehicle
-        store.submitVehicle(reservation.getReservationId());
+        Vehicle v2 = new Vehicle(2, "DL5678", VehicleType.FOUR_WHEELER);
+        v2.setDailyRentalCost(1400);
 
-        // 6. System accepts the vehicle and generates the invoice
-        Bill bill = store.generateBill(reservation.getReservationId());
+        store1.getInventory().addVehicle(v1);
+        store1.getInventory().addVehicle(v2);
 
-        // 7. User makes the Payment for the bill
-        store.makePayment(bill, PaymentMode.CASH);
 
-    }
+        // ---------------------------------------------------------
+        // 4. User selects store and searches vehicles
+        // ---------------------------------------------------------
+        Store selectedStore = rentalSystem.getStore(1001);
 
-    public static List<Vehicle> addVehicles() {
+        LocalDate fromDate = LocalDate.of(2025, 12, 5);
+        LocalDate toDate   = LocalDate.of(2025, 12, 7);
 
-        List<Vehicle> vehicles = new ArrayList<>();
+        System.out.println("\nAvailable vehicles from " + fromDate + " to " + toDate + ":");
 
-        Vehicle vehicle1 = new Car(101, 1200, 5, "Fortuner ", "Toyota", 10000, 12, 1200, 1200, new Date());
-        vehicle1.setVehicleID(1);
-        vehicle1.setVehicleType(VehicleType.FOUR_WHEELER);
+        for (Vehicle v : selectedStore.getVehicles(VehicleType.FOUR_WHEELER, fromDate, toDate)) {
+            System.out.println(" - " + v.getVehicleID() + ": " + v.getVehicleType());
+        }
 
-        Vehicle vehicle2 = new Car(102, 1500, 5, "Nexon ", "TATA", 10000, 12, 1200, 1200, new Date());
-        vehicle1.setVehicleID(2);
-        vehicle1.setVehicleType(VehicleType.FOUR_WHEELER);
 
-        Vehicle vehicle3 = new Bike(303, 900, 2, "Activa", "Honda", 5900, 12, 1200, 1200, new Date());
-        vehicle1.setVehicleID(3);
-        vehicle1.setVehicleType(VehicleType.MOTORCYCLE);
-        vehicles.add(vehicle3);
+        // ---------------------------------------------------------
+        // 5. User creates reservation
+        // ---------------------------------------------------------
+        System.out.println("\nCreating reservation...");
 
-        Vehicle vehicle4 = new Bike(404, 1200, 2, "Gen3", "Ola", 3500, 12, 1200, 1200, new Date());
-        vehicle1.setVehicleID(4);
-        vehicle1.setVehicleType(VehicleType.MOTORCYCLE);
-        vehicles.add(vehicle4);
+        Reservation reservation =
+                selectedStore.createReservation(
+                        1,                // vehicle ID
+                        user1,
+                        fromDate,
+                        toDate,
+                        ReservationType.DAILY
+                );
 
-        vehicles.add(vehicle1);
-        vehicles.add(vehicle2);
-        vehicles.add(vehicle3);
-        vehicles.add(vehicle4);
+        System.out.println("Reservation created with ID: " + reservation.getReservationId());
 
-        return vehicles;
-    }
 
-    public static List<User> addUsers() {
-        List<User> users = new ArrayList<>();
-        User user1 = new User(801, "John", "DL2022GDG556690");
-        User user2 = new User(802, "Antony", "DL2017DHW9090765231");
-        users.add(user1);
-        users.add(user2);
-        return users;
-    }
+        // ---------------------------------------------------------
+        // 6. User starts the trip
+        // ---------------------------------------------------------
+        System.out.println("\nStarting trip...");
+        selectedStore.startTrip(reservation.getReservationId());
 
-    public static List<Store> addStores(List<Vehicle> vehicles) {
-        List<Store> stores = new ArrayList<>();
 
-        // Store 1: Malleshwaram Bangalore
-        Location location1 = new Location(43012, "Gandhinagar", "Bangalore", "Karnataka", "India", 403012);
-        Store store1 = new Store(1081, location1);
-        store1.setVehicles(vehicles);
+        // ---------------------------------------------------------
+        // 7. User submits the vehicle
+        // ---------------------------------------------------------
+        System.out.println("Submitting vehicle...");
+        selectedStore.submitVehicle(reservation.getReservationId());
 
-        // Store 2: Koramangala Bangalore
-        Location location2 = new Location(44412, "Koramangala", "Bangalore", "Karnataka", "India", 403012);
-        Store store2 = new Store(1082, location2);
-        store2.setVehicles(vehicles);
 
-        // Add stores to the system
-        stores.add(store1);
-        stores.add(store2);
+        // ---------------------------------------------------------
+        // 8. System generates the bill
+        // ---------------------------------------------------------
+        System.out.println("\nGenerating bill...");
+        Bill bill = selectedStore.generateBill(reservation.getReservationId(),
+                new DailyBillingStrategy(selectedStore.getInventory()));
 
-        return stores;
+        System.out.println("Bill ID: " + bill.getBillId());
+        System.out.println("Bill Amount: " + bill.getTotalBillAmount());
+
+
+        // ---------------------------------------------------------
+        // 8. User makes payment
+        // ---------------------------------------------------------
+        System.out.println("\nProcessing Payment...");
+
+        Payment payment = selectedStore.makePayment(bill, new UPIPaymentStrategy(), bill.getTotalBillAmount());
+
+        System.out.println("\n===== PAYMENT RECEIPT =====");
+        System.out.println("Payment ID: " + payment.getPaymentId());
+        System.out.println("Paid Amount: " + payment.getAmountPaid());
+        System.out.println("Payment Mode: " + payment.getPaymentMode());
+        System.out.println("Payment Date: " + payment.getPaymentDate());
+        System.out.println("============================");
     }
 }

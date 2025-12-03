@@ -1,46 +1,31 @@
 package com.conceptcoding.interviewquestions.carrental.payment;
 
-import com.conceptcoding.interviewquestions.carrental.Bill;
-
 import java.util.Date;
 
 public class Payment {
-    Bill bill;
-    PaymentDetails paymentDetails;
 
-    public Payment(Bill bill) {
-        this.bill = bill;
+    private final int paymentId;
+    private final int billId;
+    private final double amountPaid;
+    private final PaymentMode paymentMode;
+    private final Date paymentDate;
+
+    public Payment(int paymentId,
+                   int billId,
+                   double amountPaid,
+                   PaymentMode paymentMode,
+                   Date paymentDate) {
+
+        this.paymentId = paymentId;
+        this.billId = billId;
+        this.amountPaid = amountPaid;
+        this.paymentMode = paymentMode;
+        this.paymentDate = paymentDate;
     }
 
-    public void processPayment(PaymentMode paymentMode) {
-        this.bill.setBillPaid(true);
-        this.setPaymentDetails(generatePaymentDetails(paymentMode));
-    }
-
-    private PaymentDetails generatePaymentDetails(PaymentMode paymentMode) {
-        PaymentDetails details = new PaymentDetails();
-        details.setPaymentId(965);
-        details.setAmountPaid(bill.getTotalBillAmount());
-        details.setDateOfPayment(new Date());
-        details.setRefundable(false);
-        details.setPaymentMode(paymentMode);
-        this.setPaymentDetails(details);
-        return details;
-    }
-
-    public Bill getBill() {
-        return bill;
-    }
-
-    public void setBill(Bill bill) {
-        this.bill = bill;
-    }
-
-    public PaymentDetails getPaymentDetails() {
-        return paymentDetails;
-    }
-
-    public void setPaymentDetails(PaymentDetails paymentDetails) {
-        this.paymentDetails = paymentDetails;
-    }
+    public int getPaymentId() { return paymentId; }
+    public int getBillId() { return billId; }
+    public double getAmountPaid() { return amountPaid; }
+    public PaymentMode getPaymentMode() { return paymentMode; }
+    public Date getPaymentDate() { return paymentDate; }
 }
