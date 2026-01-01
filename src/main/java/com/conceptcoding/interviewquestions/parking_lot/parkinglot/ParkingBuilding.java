@@ -21,7 +21,11 @@ public class ParkingBuilding {
             if (level.hasAvailability(vehicle.getVehicleType())) {
                 ParkingSpot spot = level.park(vehicle.getVehicleType());
                 if (spot != null) {
-                    return new Ticket(vehicle, level, spot);
+                    Ticket ticket = new Ticket(vehicle, level, spot);
+                    System.out.println("Parking allocated at level: "
+                            + level.getLevelNumber()
+                            + " spot: " + spot.getSpotId());
+                    return ticket;
                 }
             }
         }
@@ -35,3 +39,5 @@ public class ParkingBuilding {
         );
     }
 }
+
+

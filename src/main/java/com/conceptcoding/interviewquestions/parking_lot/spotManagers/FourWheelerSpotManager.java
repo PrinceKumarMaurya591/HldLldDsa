@@ -17,3 +17,4 @@ public class FourWheelerSpotManager extends ParkingSpotManager {
     }
 }
 
+

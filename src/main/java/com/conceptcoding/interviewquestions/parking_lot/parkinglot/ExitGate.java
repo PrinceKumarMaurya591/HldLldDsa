@@ -4,7 +4,7 @@ import com.conceptcoding.interviewquestions.parking_lot.Ticket;
 import com.conceptcoding.interviewquestions.parking_lot.payment.Payment;
 import com.conceptcoding.interviewquestions.parking_lot.pricing.CostComputation;
 
-class ExitGate {
+public class ExitGate {
 
     private final CostComputation costComputation;
 
@@ -30,6 +30,5 @@ class ExitGate {
     private double calculatePrice(Ticket ticket) {
         return costComputation.compute(ticket);
     }
-
 }
 

@@ -9,3 +9,4 @@ public class FixedPricingStrategy implements PricingStrategy {
         return 100;
     }
 }
+

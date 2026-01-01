@@ -9,15 +9,15 @@ public class ParkingSpot {
         this.spotId = spotId;
     }
 
-    boolean isSpotFree() {
+    public boolean isSpotFree() {
         return isFree;
     }
 
-    void occupySpot() {
+    public void occupySpot() {
         isFree = false;
     }
 
-    void releaseSpot() {
+    public void releaseSpot() {
         isFree = true;
     }
 
@@ -25,3 +25,4 @@ public class ParkingSpot {
         return spotId;
     }
 }
+

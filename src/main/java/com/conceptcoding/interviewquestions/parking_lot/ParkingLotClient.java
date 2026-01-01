@@ -5,8 +5,9 @@ import com.conceptcoding.interviewquestions.parking_lot.Entity.Vehicle;
 import com.conceptcoding.interviewquestions.parking_lot.LookupStrategy.ParkingSpotLookupStrategy;
 import com.conceptcoding.interviewquestions.parking_lot.LookupStrategy.RandomLookupStrategy;
 import com.conceptcoding.interviewquestions.parking_lot.enums.VehicleType;
-import com.conceptcoding.interviewquestions.parking_lot.parkinglot.ParkingBuilding;
-import com.conceptcoding.interviewquestions.parking_lot.parkinglot.ParkingLevel;
+import com.conceptcoding.interviewquestions.parking_lot.parkinglot.*;
+import com.conceptcoding.interviewquestions.parking_lot.payment.CashPayment;
+import com.conceptcoding.interviewquestions.parking_lot.payment.UPIPayment;
 import com.conceptcoding.interviewquestions.parking_lot.pricing.CostComputation;
 import com.conceptcoding.interviewquestions.parking_lot.pricing.FixedPricingStrategy;
 import com.conceptcoding.interviewquestions.parking_lot.spotManagers.FourWheelerSpotManager;
@@ -48,19 +49,26 @@ public class ParkingLotClient {
                 2, levelTwoManagers
         );
 
-        ParkingBuilding parkingLot =
+        ParkingBuilding parkingBuilding =
                 new ParkingBuilding(
                         List.of(level1, level2),
                         new CostComputation(new FixedPricingStrategy())
                 );
 
+        ParkingLot parkingLot = new ParkingLot(
+                parkingBuilding,
+                new EntranceGate(),
+                new ExitGate(new CostComputation(new FixedPricingStrategy()))
+        );
+
+
         Vehicle bike = new Vehicle("BIKE-101", VehicleType.TWO_WHEELER);
         Vehicle car = new Vehicle("CAR-201", VehicleType.FOUR_WHEELER);
 
-        Ticket t1 = parkingLot.getEntranceGate().enter(bike);
-        Ticket t2 = parkingLot.getEntranceGate().enter(car);
+        Ticket t1 = parkingLot.vehicleArrives(bike);
+        Ticket t2 = parkingLot.vehicleArrives(car);
 
-        parkingLot.getExitGate().exit(t1);
-        parkingLot.getExitGate().exit(t2);
+        parkingLot.vehicleExits(t1, new CashPayment());
+        parkingLot.vehicleExits(t2, new UPIPayment());
     }
 }
