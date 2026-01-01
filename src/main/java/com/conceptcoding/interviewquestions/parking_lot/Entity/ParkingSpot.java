@@ -1,24 +1,24 @@
-package com.conceptcoding.interviewquestions.parking_lot.ParkingSpot;
+package com.conceptcoding.interviewquestions.parking_lot.Entity;
 
 public class ParkingSpot {
 
     private final String spotId;
-    private boolean free = true;
+    private boolean isFree = true;
 
     public ParkingSpot(String spotId) {
         this.spotId = spotId;
     }
 
     boolean isSpotFree() {
-        return free;
+        return isFree;
     }
 
     void occupySpot() {
-        free = false;
+        isFree = false;
     }
 
     void releaseSpot() {
-        free = true;
+        isFree = true;
     }
 
     public String getSpotId() {

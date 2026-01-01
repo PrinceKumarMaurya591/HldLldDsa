@@ -1,4 +1,6 @@
-package com.conceptcoding.interviewquestions.parking_lot;
+package com.conceptcoding.interviewquestions.parking_lot.Entity;
+
+import com.conceptcoding.interviewquestions.parking_lot.enums.VehicleType;
 
 public class Vehicle {
 
@@ -18,3 +20,4 @@ public class Vehicle {
         return vehicleType;
     }
 }
+

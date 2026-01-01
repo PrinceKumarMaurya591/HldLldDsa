@@ -1,4 +1,7 @@
-package com.conceptcoding.interviewquestions.parking_lot.ParkingSpot;
+package com.conceptcoding.interviewquestions.parking_lot.spotManagers;
+
+import com.conceptcoding.interviewquestions.parking_lot.Entity.ParkingSpot;
+import com.conceptcoding.interviewquestions.parking_lot.LookupStrategy.ParkingSpotLookupStrategy;
 
 import java.util.List;
 import java.util.concurrent.locks.ReentrantLock;
@@ -48,3 +51,4 @@ public abstract class ParkingSpotManager {
         }
     }
 }
+

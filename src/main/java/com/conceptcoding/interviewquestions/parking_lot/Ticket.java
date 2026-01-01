@@ -1,6 +1,8 @@
 package com.conceptcoding.interviewquestions.parking_lot;
 
-import com.conceptcoding.interviewquestions.parking_lot.ParkingSpot.ParkingSpot;
+import com.conceptcoding.interviewquestions.parking_lot.Entity.Vehicle;
+import com.conceptcoding.interviewquestions.parking_lot.Entity.ParkingSpot;
+import com.conceptcoding.interviewquestions.parking_lot.parkinglot.ParkingLevel;
 
 import java.time.LocalDateTime;
 
@@ -36,3 +38,4 @@ public class Ticket {
         return entryTime;
     }
 }
+

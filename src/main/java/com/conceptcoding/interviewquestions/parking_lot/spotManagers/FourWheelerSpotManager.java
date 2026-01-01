@@ -1,4 +1,7 @@
-package com.conceptcoding.interviewquestions.parking_lot.ParkingSpot;
+package com.conceptcoding.interviewquestions.parking_lot.spotManagers;
+
+import com.conceptcoding.interviewquestions.parking_lot.Entity.ParkingSpot;
+import com.conceptcoding.interviewquestions.parking_lot.LookupStrategy.ParkingSpotLookupStrategy;
 
 import java.util.List;
 
@@ -13,3 +16,4 @@ public class FourWheelerSpotManager extends ParkingSpotManager {
         super(spots, strategy);
     }
 }
+

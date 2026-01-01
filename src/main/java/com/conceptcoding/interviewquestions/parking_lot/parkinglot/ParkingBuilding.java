@@ -1,20 +1,19 @@
-package com.conceptcoding.interviewquestions.parking_lot;
+package com.conceptcoding.interviewquestions.parking_lot.parkinglot;
 
-import com.conceptcoding.interviewquestions.parking_lot.ParkingSpot.ParkingSpot;
+import com.conceptcoding.interviewquestions.parking_lot.Entity.Vehicle;
+import com.conceptcoding.interviewquestions.parking_lot.Entity.ParkingSpot;
+import com.conceptcoding.interviewquestions.parking_lot.Ticket;
+import com.conceptcoding.interviewquestions.parking_lot.pricing.CostComputation;
 
 import java.util.List;
 
-class ParkingLot {
+public class ParkingBuilding {
 
     private final List<ParkingLevel> levels;
-    private final EntranceGate entranceGate;
-    private final ExitGate exitGate;
 
-    public ParkingLot(List<ParkingLevel> levels,
-                      CostComputation costComputation) {
+    public ParkingBuilding(List<ParkingLevel> levels,
+                           CostComputation costComputation) {
         this.levels = levels;
-        this.entranceGate = new EntranceGate(this);
-        this.exitGate = new ExitGate(this, costComputation);
     }
 
     Ticket allocate(Vehicle vehicle) {
@@ -34,13 +33,5 @@ class ParkingLot {
                 ticket.getVehicle().getVehicleType(),
                 ticket.getSpot()
         );
-    }
-
-    public EntranceGate getEntranceGate() {
-        return entranceGate;
-    }
-
-    public ExitGate getExitGate() {
-        return exitGate;
     }
 }

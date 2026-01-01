@@ -1,4 +1,6 @@
-package com.conceptcoding.interviewquestions.parking_lot.ParkingSpot;
+package com.conceptcoding.interviewquestions.parking_lot.LookupStrategy;
+
+import com.conceptcoding.interviewquestions.parking_lot.Entity.ParkingSpot;
 
 import java.util.List;
 
@@ -14,3 +16,4 @@ public class RandomLookupStrategy implements ParkingSpotLookupStrategy {
         return null;
     }
 }
+
