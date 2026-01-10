@@ -3,6 +3,7 @@ package com.conceptcoding.interviewquestions.book_my_show.entities;
 public class Movie {
 
     private final String name;
+    //duration
 
     public Movie(String name) {
         this.name = name;
@@ -12,3 +13,4 @@ public class Movie {
         return name;
     }
 }
+

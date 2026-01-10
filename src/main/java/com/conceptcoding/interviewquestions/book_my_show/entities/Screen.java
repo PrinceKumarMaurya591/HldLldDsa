@@ -31,3 +31,4 @@ public class Screen {
         return showsByDate.getOrDefault(date, List.of());
     }
 }
+

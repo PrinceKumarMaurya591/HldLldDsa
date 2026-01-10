@@ -41,6 +41,8 @@ public class Show {
 
     public boolean lockSeats(List<Integer> seatIds) {
         List<Integer> sorted = new ArrayList<>(seatIds);
+
+        //sorting i am doing to avoid deadlock scenario
         Collections.sort(sorted);
 
         List<ReentrantLock> acquiredLocks = new ArrayList<>();
@@ -87,3 +89,4 @@ public class Show {
         }
     }
 }
+

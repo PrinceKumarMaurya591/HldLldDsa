@@ -9,6 +9,7 @@ public class Theatre {
     private final String name;
     private final City city;
     private final List<Screen> screens;
+    //address info etc.
 
     public Theatre(String name, City city, List<Screen> screens) {
         this.name = name;
@@ -28,3 +29,4 @@ public class Theatre {
         return screens;
     }
 }
+
