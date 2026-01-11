@@ -20,5 +20,10 @@ public class Booking {
     public UUID getBookingId() {
         return bookingId;
     }
+
+    public User getUser() {
+        return user;
+    }
 }
+
 

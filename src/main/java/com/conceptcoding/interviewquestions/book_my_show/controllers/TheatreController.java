@@ -34,3 +34,4 @@ public class TheatreController {
         return theatreService.getShows(movie, date, theatre);
     }
 }
+

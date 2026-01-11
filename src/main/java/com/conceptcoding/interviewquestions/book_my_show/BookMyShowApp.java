@@ -1,10 +1,10 @@
 package com.conceptcoding.interviewquestions.book_my_show;
 
+import com.conceptcoding.interviewquestions.book_my_show.controllers.BookingController;
 import com.conceptcoding.interviewquestions.book_my_show.controllers.TheatreController;
 import com.conceptcoding.interviewquestions.book_my_show.entities.*;
 import com.conceptcoding.interviewquestions.book_my_show.enums.City;
 import com.conceptcoding.interviewquestions.book_my_show.enums.SeatCategory;
-import com.conceptcoding.interviewquestions.book_my_show.service.BookingService;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -13,8 +13,7 @@ import java.util.*;
 public class BookMyShowApp {
 
     private TheatreController theatreController;
-
-    private BookingService bookingService;
+    private BookingController bookingController;
 
     public static void main(String[] args) {
         BookMyShowApp app = new BookMyShowApp();
@@ -25,7 +24,7 @@ public class BookMyShowApp {
 
     private void initialize() {
         theatreController = new TheatreController();
-        bookingService = new BookingService();
+        bookingController = new BookingController();
 
 
         /*
@@ -155,7 +154,7 @@ public class BookMyShowApp {
 
         // 10. Booking + Payment
         Booking booking =
-                bookingService.book(
+                bookingController.createBooking(
                         user,
                         selectedShow,
                         selectedSeats
