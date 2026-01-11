@@ -22,10 +22,12 @@ public class BookingService {
             throw new RuntimeException("Seat unavailable");
         }
 
-        Payment payment = new Payment();
-        if (payment.pay() == PaymentStatus.SUCCESS) {
+        //simulated payment flow here, we can invoke Pay method of Payment Controller
+        Payment payment = new Payment(PaymentStatus.SUCCESS);
+
+        if (payment.getStatus() == PaymentStatus.SUCCESS) {
             show.confirmSeats(seats);
-            Booking booking =  new Booking(user, show, seats);
+            Booking booking =  new Booking(user, show, seats, payment);
             bookings.put(booking.getBookingId(), booking);
             return booking;
         } else {
