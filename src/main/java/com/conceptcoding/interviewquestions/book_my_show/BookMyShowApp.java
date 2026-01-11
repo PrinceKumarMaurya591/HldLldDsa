@@ -1,6 +1,5 @@
 package com.conceptcoding.interviewquestions.book_my_show;
 
-import com.conceptcoding.interviewquestions.book_my_show.controllers.MovieController;
 import com.conceptcoding.interviewquestions.book_my_show.controllers.TheatreController;
 import com.conceptcoding.interviewquestions.book_my_show.entities.*;
 import com.conceptcoding.interviewquestions.book_my_show.enums.City;
@@ -12,6 +11,7 @@ import java.time.LocalTime;
 import java.util.*;
 
 public class BookMyShowApp {
+
     private TheatreController theatreController;
 
     private BookingService bookingService;
