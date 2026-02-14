@@ -1,0 +1,29 @@
+design parking lot
+Lets understand the flow first:
+Vehicle arrives at an Entry gate .
+We can have multiple entry gate
+Based on Vehicle Type, particular parking spot is looked for.
+Interviewer can ask for flexibility in choosing the parking spot like random, or any specific
+parking strategy
+Also interviewer can say, parking lot can have multiple levels.
+Concurrency should be handled properly, for example:
+Same parking spot can not be reserved by two different vehicles.
+for 1 vehicle say two wheeler we should not block the whole parking lot itself
+If Parking spot is available, Ticket is generated for particular vehicle
+a. Ticket can have: vehicle no, parking level no, parking spot no and Entry time.
+At Exit gate, cost computation should have happened, Interviewer can ask for different
+strategies for cost computation like:
+a. Fixed price
+b. Hourly based computation etc.
+Payment will be made against the ticket at Exit gate and Parking spot is free again.
+Based on above understanding, we identified the below major objects involved in this design:
+Design Parking Lot with Complete Implementation
+English)
+Vehicle
+Parking spot
+Parking level
+Entry gate
+Exit Gate
+Ticket
+Payment
+Lets start creating the UML: and java code same like above
