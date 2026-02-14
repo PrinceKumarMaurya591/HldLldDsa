@@ -13,4 +13,5 @@ public class ImperialWeighingMachineImpl implements ImperialWeighingMachine {
     public double getWeightInPounds() {
         return weightInPounds;
     }
+    
 }
