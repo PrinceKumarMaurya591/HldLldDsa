@@ -1,0 +1,27 @@
+package com.conceptcoding.dsa.string;
+
+import java.util.HashMap;
+import java.util.Map;
+
+
+//completly blank
+public class LengthofthelongestSubString {
+
+    public static void main(String[] args) {
+        String s1="abcabcbb";
+        System.out.println(lengthOfTheLongestSubStringWithoutRepeatingChar(s1));
+    }
+    public static int lengthOfTheLongestSubStringWithoutRepeatingChar(String s){
+        Map<Character,Integer> map=new HashMap<>();
+        int left=0; int maxLength=0;
+        for(int right=0;right<s.length();right++){
+           char ch=s.charAt(right);
+           if(map.containsKey(ch)){
+               left=Math.max(left,map.get(ch)+1);
+           }
+           map.put(ch,right);
+           maxLength=Math.max(maxLength,right-left+1);
+        }
+        return maxLength;
+    }
+}

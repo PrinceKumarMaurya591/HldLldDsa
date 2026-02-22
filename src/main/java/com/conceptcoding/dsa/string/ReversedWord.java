@@ -10,6 +10,7 @@ public class ReversedWord {
         String[] words = word.split(" ");
         StringBuffer sb=new StringBuffer();
         for(int i=words.length-1;i>=0;i--){
+            //this line i was forgetting
             sb.append(words[i]).append(" ");
              }
         return sb.toString();

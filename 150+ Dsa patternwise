@@ -1,0 +1,333 @@
+# 📚 Complete DSA Interview Preparation Guide
+
+## 📌 Table of Contents
+1. [Sliding Window](#1-sliding-window)
+2. [Kadane's Algorithm](#2-kadanes-algorithm)
+3. [Two Pointer](#3-two-pointer)
+4. [Prefix Sum](#4-prefix-sum)
+5. [Recursion](#5-recursion)
+6. [Greedy](#6-greedy)
+7. [Dynamic Programming](#7-dynamic-programming)
+8. [Linked List](#8-linked-list)
+9. [Tree](#9-tree)
+10. [Graph](#10-graph)
+11. [Stack & Queue](#11-stack--queue)
+
+---
+
+## 1. Sliding Window
+### 🎯 Top 15 Interview Questions
+
+| # | Problem | Concept | Companies |
+|---|---------|---------|-----------|
+| 1 | **Maximum Sum Subarray of Size K** | Fixed-size window | Amazon, Microsoft |
+| 2 | **Longest Substring Without Repeating Characters** | Variable window + HashSet | Google, Facebook |
+| 3 | **Minimum Size Subarray Sum** | Variable window + Shrinking | Amazon |
+| 4 | **Longest Repeating Character Replacement** | Frequency map + Window resize | Google |
+| 5 | **Permutation in String** | Fixed window + Frequency count | Microsoft |
+| 6 | **Find All Anagrams in a String** | Sliding window + Char count | Amazon |
+| 7 | **Longest Substring with At Most K Distinct** | Variable window + HashMap | Google |
+| 8 | **Fruit Into Baskets** | At most 2 distinct elements | Amazon |
+| 9 | **Sliding Window Maximum** | Deque (Monotonic Queue) | **FAANG Favorite** |
+| 10 | **Minimum Window Substring** | Two pointers + Frequency map | **Hard Problem** |
+| 11 | **Subarray Product Less Than K** | Variable window + Multiplication | Amazon |
+| 12 | **Longest Subarray of 1s After Deleting One** | At most one zero | Google |
+| 13 | **Binary Subarrays With Sum** | Prefix sum + Sliding window | Microsoft |
+| 14 | **Grumpy Bookstore Owner** | Fixed window + Base calculation | Amazon |
+| 15 | **Maximum Points You Can Obtain from Cards** | Convert to min subarray | Google |
+
+---
+
+## 2. Kadane's Algorithm
+### 🎯 Top 10 Interview Questions
+
+| # | Problem | Key Concept | Difficulty |
+|---|---------|-------------|------------|
+| 1 | **Maximum Subarray** | Core Kadane (Must Know) | ⭐ Easy |
+| 2 | **Maximum Sum Circular Subarray** | Kadane twice (max + total - min) | ⭐⭐ Medium |
+| 3 | **Maximum Product Subarray** | Track both max & min | ⭐⭐ Medium |
+| 4 | **Maximum Sum Rectangle in 2D Matrix** | Row compression + Kadane | ⭐⭐⭐ Hard |
+| 5 | **K-Concatenation Maximum Sum** | Kadane + Prefix/Suffix | ⭐⭐ Medium |
+| 6 | **Maximum Absolute Sum of Any Subarray** | Kadane for max & min | ⭐⭐ Medium |
+| 7 | **Maximum Subarray Sum with One Deletion** | Forward + Backward Kadane | ⭐⭐ Medium |
+| 8 | **Largest Sum with At Least K Elements** | Kadane + Sliding window | ⭐⭐ Medium |
+| 9 | **Maximum Difference of Zeros and Ones** | Convert 0→+1, 1→-1 | ⭐⭐ Medium |
+| 10 | **Maximum Alternating Subarray Sum** | Modified Kadane | ⭐⭐⭐ Hard |
+
+---
+
+## 3. Two Pointer
+### 🎯 Top 15 Interview Questions
+
+| # | Problem | Pattern | Companies |
+|---|---------|---------|-----------|
+| 1 | **Two Sum II (Sorted Array)** | Opposite direction | Amazon |
+| 2 | **Container With Most Water** | Move smaller height | Google |
+| 3 | **3Sum** | Sorting + Two pointers | **FAANG Favorite** |
+| 4 | **3Sum Closest** | Sorting + Two pointers | Microsoft |
+| 5 | **4Sum** | Nested loops + Two pointers | Amazon |
+| 6 | **Remove Duplicates from Sorted Array** | Slow-Fast pointer | Facebook |
+| 7 | **Remove Element** | In-place removal | Google |
+| 8 | **Move Zeroes** | Slow-Fast pointer | Amazon |
+| 9 | **Valid Palindrome** | Opposite direction | Microsoft |
+| 10 | **Valid Palindrome II** | At most one deletion | Google |
+| 11 | **Trapping Rain Water** | LeftMax/RightMax | **Hard Problem** |
+| 12 | **Sort Colors (Dutch Flag)** | Three pointers | Amazon |
+| 13 | **Squares of Sorted Array** | Merge pattern | Facebook |
+| 14 | **Backspace String Compare** | Two pointers from end
+| 15 | **Partition Labels** | Greedy + Two pointers | Google |
+
+---
+
+## 4. Prefix Sum
+### 🎯 Top 15 Interview Questions
+
+| # | Problem | Technique | Importance |
+|---|---------|-----------|------------|
+| 1 | **Subarray Sum Equals K** | Prefix sum + HashMap | ⭐⭐⭐⭐⭐ |
+| 2 | **Range Sum Query - Immutable** | Prefix array | ⭐⭐⭐ |
+| 3 | **Range Sum Query 2D - Immutable** | 2D prefix sum | ⭐⭐⭐⭐ |
+| 4 | **Product of Array Except Self** | Prefix + Suffix product | ⭐⭐⭐⭐⭐ |
+| 5 | **Maximum Size Subarray Sum Equals k** | Prefix sum + HashMap | ⭐⭐⭐⭐ |
+| 6 | **Contiguous Array** | Convert 0→-1 | ⭐⭐⭐⭐ |
+| 7 | **Binary Subarrays With Sum** | Prefix sum | ⭐⭐⭐ |
+| 8 | **Pivot Index** | Left sum = Right sum | ⭐⭐ |
+| 9 | **Subarray Sums Divisible by K** | Prefix sum % k | ⭐⭐⭐⭐ |
+| 10 | **Number of Subarrays with Odd Sum** | Prefix sum parity | ⭐⭐⭐ |
+| 11 | **Running Sum of 1d Array** | Basic prefix sum | ⭐ |
+| 12 | **Minimum Size Subarray Sum** | Prefix + Binary search | ⭐⭐⭐ |
+| 13 | **Corporate Flight Bookings** | Difference array | ⭐⭐⭐⭐ |
+| 14 | **Car Pooling** | Difference array | ⭐⭐⭐ |
+| 15 | **Subarray Range with Given Sum** | Prefix + HashMap | ⭐⭐⭐ |
+
+---
+
+## 5. Recursion
+### 🎯 Top 15 Interview Questions
+
+| # | Problem | Pattern | Type |
+|---|---------|---------|------|
+| 1 | **Factorial** | Base + Recursive call | Basic |
+| 2 | **Fibonacci Number** | Recursion + Memoization | DP Prep |
+| 3 | **Power of X (x^n)** | Divide & Conquer | Fast exponent |
+| 4 | **Tower of Hanoi** | Recursive decomposition | Classic |
+| 5 | **Reverse a Linked List** | Recursive pointer change | LinkedList |
+| 6 | **Merge Two Sorted Lists** | Recursive merging | LinkedList |
+| 7 | **Generate Parentheses** | Backtracking | Combinatorial |
+| 8 | **Subsets** | Pick/Not Pick | Combinatorial |
+| 9 | **Permutations** | Swap + Backtrack | Combinatorial |
+| 10 | **Combination Sum** | Backtracking | Combinatorial |
+| 11 | **Palindrome Partitioning** | Backtracking | String |
+| 12 | **N-Queens** | Backtracking | **Hard** |
+| 13 | **Word Search** | DFS + Backtracking | Matrix |
+| 14 | **Letter Combinations** | Backtracking | String |
+| 15 | **Sudoku Solver** | Heavy backtracking | **Expert** |
+
+---
+
+## 6. Greedy
+### 🎯 Top 15 Interview Questions
+
+| # | Problem | Strategy | Companies |
+|---|---------|----------|-----------|
+| 1 | **Activity Selection** | Sort by finish time | Amazon |
+| 2 | **Fractional Knapsack** | Sort by value/weight | Microsoft |
+| 3 | **Jump Game** | Reachability check | Google |
+| 4 | **Jump Game II** | Minimum jumps | Amazon |
+| 5 | **Gas Station** | Total surplus check | **Classic** |
+| 6 | **Candy** | Two-pass greedy | Hard |
+| 7 | **Assign Cookies** | Sort + Assign | Amazon |
+| 8 | **Min Arrows to Burst Balloons** | Interval merging | Google |
+| 9 | **Non-overlapping Intervals** | Remove min intervals | Microsoft |
+| 10 | **Partition Labels** | Last occurrence | Amazon |
+| 11 | **Task Scheduler** | Cooldown management | Google |
+| 12 | **Meeting Rooms II** | Min rooms required | Amazon |
+| 13 | **Lemonade Change** | Bill counting | Google |
+| 14 | **Boats to Save People** | Two pointers + Greedy | Amazon |
+| 15 | **Remove K Digits** | Monotonic stack | **Medium** |
+
+---
+
+## 7. Dynamic Programming
+### 🎯 Top 15 Interview Questions
+
+| # | Problem | Pattern | Difficulty |
+|---|---------|---------|------------|
+| 1 | **Climbing Stairs** | 1D DP (Fibonacci) | ⭐ Easy |
+| 2 | **House Robber** | Include/Exclude | ⭐⭐ Medium |
+| 3 | **House Robber II** | Circular DP | ⭐⭐ Medium |
+| 4 | **Coin Change** | Unbounded Knapsack | ⭐⭐ Medium |
+| 5 | **Longest Increasing Subsequence** | DP + Binary Search | ⭐⭐⭐ Hard |
+| 6 | **Longest Common Subsequence** | 2D DP | ⭐⭐⭐⭐ Must Know |
+| 7 | **0/1 Knapsack** | Classic DP | ⭐⭐⭐ |
+| 8 | **Partition Equal Subset Sum** | Subset sum | ⭐⭐⭐ |
+| 9 | **Edit Distance** | String DP | ⭐⭐⭐ |
+| 10 | **Unique Paths** | Grid DP | ⭐⭐ |
+| 11 | **Unique Paths II** | Grid with obstacles | ⭐⭐ |
+| 12 | **Minimum Path Sum** | Grid DP | ⭐⭐ |
+| 13 | **Word Break** | String segmentation | ⭐⭐⭐ |
+| 14 | **Maximum Product Subarray** | Track min/max | ⭐⭐ |
+| 15 | **Burst Balloons** | Interval DP | ⭐⭐⭐⭐ Hard |
+
+---
+
+## 8. Linked List
+### 🎯 Top 15 Interview Questions
+
+| # | Problem | Technique | Importance |
+|---|---------|-----------|------------|
+| 1 | **Reverse Linked List** | Pointer manipulation | ⭐⭐⭐⭐⭐ |
+| 2 | **Linked List Cycle** | Floyd's Algorithm | ⭐⭐⭐⭐⭐ |
+| 3 | **Linked List Cycle II** | Cycle start node | ⭐⭐⭐⭐ |
+| 4 | **Merge Two Sorted Lists** | Merge pattern | ⭐⭐⭐⭐ |
+| 5 | **Remove Nth Node From End** | Gap method | ⭐⭐⭐⭐ |
+| 6 | **Middle of Linked List** | Slow-Fast pointer | ⭐⭐⭐ |
+| 7 | **Intersection of Two Lists** | Length difference | ⭐⭐⭐ |
+| 8 | **Palindrome Linked List** | Reverse second half | ⭐⭐⭐ |
+| 9 | **Add Two Numbers** | Carry handling | ⭐⭐⭐⭐ |
+| 10 | **Copy List with Random Pointer** | HashMap + Interweave | ⭐⭐⭐⭐ |
+| 11 | **Rotate List** | K rotation | ⭐⭐⭐ |
+| 12 | **Reorder List** | Find middle + Reverse + Merge | ⭐⭐⭐ |
+| 13 | **Reverse Nodes in k-Group** | Group reversal | ⭐⭐⭐⭐ |
+| 14 | **Flatten Multilevel List** | DFS approach | ⭐⭐⭐ |
+| 15 | **LRU Cache** | Doubly LL + HashMap | ⭐⭐⭐⭐⭐ |
+
+---
+
+## 9. Tree
+### 🎯 Top 15 Interview Questions
+
+| # | Problem | Pattern | Companies |
+|---|---------|---------|-----------|
+| 1 | **Binary Tree Inorder Traversal** | DFS Recursion | Amazon |
+| 2 | **Binary Tree Preorder Traversal** | DFS Recursion | Microsoft |
+| 3 | **Binary Tree Postorder Traversal** | DFS Recursion
+| 4 | **Maximum Depth of Binary Tree** | Height calculation | Google |
+| 5 | **Balanced Binary Tree** | Height check | Amazon |
+| 6 | **Diameter of Binary Tree** | Path calculation | Microsoft |
+| 7 | **Binary Tree Level Order Traversal** | BFS Queue | **Must Know** |
+| 8 | **Lowest Common Ancestor** | DFS search | Google |
+| 9 | **Validate Binary Search Tree** | BST property | Amazon |
+| 10 | **Kth Smallest in BST** | Inorder traversal | Microsoft |
+| 11 | **Path Sum** | Root-to-leaf | Amazon |
+| 12 | **Path Sum II** | Return all paths | Google |
+| 13 | **Serialize/Deserialize Binary Tree** | BFS/DFS encoding | **Hard** |
+| 14 | **Construct Tree from Traversals** | Recursive building | Amazon |
+| 15 | **Binary Tree Right Side View** | Level order variant | Microsoft |
+
+---
+
+## 10. Graph
+### 🎯 Top 15 Interview Questions
+
+| # | Problem | Algorithm | Difficulty |
+|---|---------|-----------|------------|
+| 1 | **Number of Islands** | DFS/BFS | ⭐⭐ Medium |
+| 2 | **Clone Graph** | DFS + HashMap | ⭐⭐ Medium |
+| 3 | **Course Schedule** | Topological Sort | ⭐⭐⭐ Medium |
+| 4 | **Course Schedule II** | Kahn's Algorithm | ⭐⭐⭐ Medium |
+| 5 | **Graph Valid Tree** | Union-Find | ⭐⭐ Medium |
+| 6 | **Cycle in Undirected Graph** | DFS/Union-Find | ⭐⭐ Medium |
+| 7 | **Cycle in Directed Graph** | DFS + Recursion stack | ⭐⭐⭐ Medium |
+| 8 | **Network Delay Time** | Dijkstra | ⭐⭐⭐ Medium |
+| 9 | **Cheapest Flights Within K Stops** | Bellman-Ford | ⭐⭐⭐⭐ Hard |
+| 10 | **Rotting Oranges** | Multi-source BFS | ⭐⭐ Medium |
+| 11 | **Word Ladder** | BFS | ⭐⭐⭐⭐ Hard |
+| 12 | **Minimum Spanning Tree** | Kruskal/Prim | ⭐⭐⭐ Medium |
+| 13 | **Redundant Connection** | Union-Find | ⭐⭐ Medium |
+| 14 | **Bipartite Graph** | BFS Coloring | ⭐⭐ Medium |
+| 15 | **Alien Dictionary** | Topological Sort | ⭐⭐⭐⭐ Hard |
+
+---
+
+## 11. Stack & Queue
+### 🎯 Top 15 Interview Questions
+
+#### 📌 Stack Problems
+
+| # | Problem | Technique | Companies |
+|---|---------|-----------|-----------|
+| 1 | **Valid Parentheses** | Push/Pop matching | **Must Know** |
+| 2 | **Min Stack** | Auxiliary stack | Amazon |
+| 3 | **Daily Temperatures** | Monotonic stack | Google |
+| 4 | **Next Greater Element I** | Monotonic stack | Microsoft |
+| 5 | **Largest Rectangle in Histogram** | Monotonic stack | **Hard** |
+| 6 | **Evaluate Reverse Polish Notation** | Postfix evaluation | Amazon |
+| 7 | **Remove K Digits** | Greedy + Stack | Google |
+| 8 | **Decode String** | Nested decoding | Microsoft |
+
+#### 📌 Queue Problems
+
+| # | Problem | Technique | Companies |
+|---|---------|-----------|-----------|
+| 9 | **Implement Queue using Stacks** | Two stacks | Amazon |
+| 10 | **Design Circular Queue** | Array implementation | Microsoft |
+| 11 | **Sliding Window Maximum** | Monotonic deque | **FAANG** |
+| 12 | **Rotting Oranges** | Multi-source BFS | Amazon |
+| 13 | **First Unique Character** | Queue + Frequency | Google |
+| 14 | **Time Needed to Buy Tickets** | Queue simulation | Microsoft |
+| 15 | **Number of Recent Calls** | Time window queue | Amazon |
+
+---
+
+## 📊 Quick Revision Guide
+
+### 🎯 Pattern Recognition
+
+| Pattern | Key Problems |
+|---------|--------------|
+| **Sliding Window** | Max Sum Subarray, Longest Substring, Anagrams |
+| **Two Pointer** | 3Sum, Container Water, Trapping Rain |
+| **Kadane** | Max Subarray, Max Product, Circular |
+| **Prefix Sum** | Subarray Sum K, Pivot Index, 2D Range |
+| **Recursion** | Subsets, Permutations, N-Queens |
+| **Greedy** | Activity Selection, Jump Game, Candy |
+| **DP** | LCS, Knapsack, Coin Change, House Robber |
+| **LinkedList** | Reverse, Cycle, Merge, LRU |
+| **Tree** | Traversals, LCA, BST, Level Order |
+| **Graph** | Islands, Course Schedule, Dijkstra |
+| **Stack/Queue** | Parentheses, Monotonic Stack, Deque |
+
+---
+
+## 💡 Pro Tips
+
+### 📝 Before Interview
+- ✅ Master **pattern recognition** first
+- ✅ Practice **time & space complexity** analysis
+- ✅ Focus on **most asked** problems (marked with ⭐)
+- ✅ Code on **paper/whiteboard** for practice
+
+### 🎯 Company-wise Focus
+| Company | Focus Areas |
+|---------|-------------|
+| **Google** | Graphs, Trees, DP |
+| **Amazon** | Arrays, LinkedLists, Trees |
+| **Microsoft** | Strings, Recursion, Design |
+| **Facebook** | Strings, Graphs, Recursion |
+
+---
+
+## 🚀 Practice Plan
+
+### 📅 30-Day Mastery Schedule
+
+| Week | Focus | Daily Goal |
+|------|-------|------------|
+| 1 | Arrays + Strings | 3 problems/day |
+| 2 | LinkedList + Stack/Queue | 3 problems/day |
+| 3 | Trees + Graphs | 2 problems/day |
+| 4 | DP + Revision | 2 problems/day + Revision |
+
+---
+
+## 📚 Recommended Resources
+
+1. **LeetCode** - Problem solving
+2. **GeeksforGeeks** - Concept clarity
+3. **AlgoExpert** - Structured learning
+4. **Cracking the Coding Interview** - Book
+
+---
+
+> **Note**: This is a comprehensive guide covering 150+ problems across 11 topics. Focus on understanding patterns rather than memorizing solutions. Happy Coding! 🎉
