@@ -1,4 +1,4 @@
-package com.conceptcoding.dsa.arrayandhashing;
+package com.conceptcoding.dsa.array.arrayandhashing;
 
 import java.util.HashSet;
 import java.util.Set;

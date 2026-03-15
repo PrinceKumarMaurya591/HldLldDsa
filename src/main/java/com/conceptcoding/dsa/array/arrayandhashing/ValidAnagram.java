@@ -1,4 +1,4 @@
-package com.conceptcoding.dsa.arrayandhashing;
+package com.conceptcoding.dsa.array.arrayandhashing;
 
 public class ValidAnagram {
     public static void main(String[] args) {
